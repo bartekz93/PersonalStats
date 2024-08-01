@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="toolbar">
+        <div class="head">
+        @if (withBack) {
+            <p-button (click)="back()" icon="pi pi-angle-left" [rounded]="true" [text]="true" />
+        }
+        {{title}}
+        </div>
+
+        
+        <div>
+            @for (action of actions; track action.label) {
+                <p-button class="mr-2" severity="primary" size="small" [outlined]="true" [icon]="action.icon" [label]="action.label"></p-button>
+            }
+        </div>
+    </div>
+    <div class="content">
+        <ng-content></ng-content>
+    </div>
+</div>

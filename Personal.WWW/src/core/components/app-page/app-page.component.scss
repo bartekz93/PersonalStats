@@ -1,0 +1,27 @@
+.container {
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.toolbar {
+    background-color: #e6eefe;
+    height: 64px;
+    font-size: 24px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.head {
+    display: flex; 
+    align-items: center;
+}
+
+.content {
+    padding: 10px;
+    overflow: auto;
+    flex: 1;
+}
