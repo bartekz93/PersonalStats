@@ -1,0 +1,19 @@
+<ng-container>
+    <ng-template #itemTemplate let-item="item" let-small="small">
+        <div style="display: flex; gap: 10px">
+            <div [ngStyle]="getItemStyle(item, small)">
+                <i style="font-size: 10px" [class]="item.icon"></i>
+            </div>
+            {{item.name}}
+        </div>
+    </ng-template>
+    
+    <p-dropdown [loading]="categoriesLoading" [options]="categories" [ngModel]="value" (ngModelChange)="onChange($event)" placeholder="Category" optionValue="id" optionLabel="name" [showClear]="true">
+        <ng-template let-item pTemplate="item">
+            <ng-container *ngTemplateOutlet="itemTemplate;context:{item, small: false}"></ng-container> 
+        </ng-template>
+        <ng-template let-item pTemplate="selectedItem">
+            <ng-container *ngTemplateOutlet="itemTemplate;context:{item, small: true}"></ng-container>
+        </ng-template>
+    </p-dropdown>
+</ng-container>

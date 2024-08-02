@@ -7,6 +7,7 @@ export interface Transaction {
     amount: number;
     categoryId: number;
     categoryName: string;
+    relWidth?: string;
 }
 
 @Injectable({providedIn: 'root'})
@@ -22,21 +23,21 @@ export class TransactionService {
             {
                 date: '2024-01-01',
                 description: '',
-                amount: 10.0,
+                amount: -10.0,
                 categoryId: 1,
                 categoryName: ''
             },
             {
                 date: '2024-01-01',
                 description: '',
-                amount: 10.0,
+                amount: -25.0,
                 categoryId: 1,
                 categoryName: ''
             },
             {
                 date: '2024-01-01',
                 description: '',
-                amount: 10.0,
+                amount: 50.0,
                 categoryId: 1,
                 categoryName: ''
             },
