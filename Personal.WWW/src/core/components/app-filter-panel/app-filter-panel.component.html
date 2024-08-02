@@ -1,10 +1,24 @@
 <p-card>
     <div class="grid p-fluid">
-        <ng-content></ng-content>
+        <div class="grid p-fluid">
+            @for (filter of filters; track filter.label) {
+                <div class="col">
+                    @if (filter.type == 'date') {
+                        <p-calendar [ngModel]="getValue(filter.field)" (ngModelChange)="setValue(filter.field, $event)" [iconDisplay]="'input'" [showIcon]="true" [placeholder]="filter.label" />
+                    }
+                    @if (filter.type == 'number') {
+                        <p-inputNumber [ngModel]="getValue(filter.field)" (ngModelChange)="setValue(filter.field, $event)" [showClear]="true" mode="decimal" [placeholder]="filter.label" [maxFractionDigits]="2" />
+                    }
+                    @if (filter.type == 'custom') {
+                        <app-dynamic [component]="filter.component" [value]="getValue(filter.field)" (valueChange)="setValue(filter.field, $event)" />
+                    }
+                </div>
+            }
+        </div>
     </div>
 
     <div style="display: flex; justify-content: flex-end" class="mt-3">
-        <p-button severity="secondary" [text]="true" class="mr-2">Wyczyść</p-button>
+        <p-button severity="secondary" [text]="true" class="mr-2" (onClick)="clear()">Wyczyść</p-button>
         <p-button>Szukaj</p-button>
     </div>
 </p-card>
