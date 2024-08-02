@@ -1,4 +1,4 @@
-<app-page title="Transactions" [actions]="actions">
+<app-page [title]="'budget.transactions' | translate" [actions]="actions">
     
 
     <app-filter-panel [filters]="filters" [value]="filter" (onClear)="clearFilter()"/>

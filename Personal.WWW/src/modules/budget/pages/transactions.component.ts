@@ -13,6 +13,7 @@ import { AppPageAction } from '../../../core/models/app-page-action.model';
 import { AppList, AppListColumnDefinition } from '../../../core/components/app-list/app-list.component';
 import { Format } from '../../../core/helpers/formatters';
 import { CategorySelect } from '../components/category-select/category-select.component';
+import {TranslateModule, TranslateService} from '@ngx-translate/core';
 
 @Component({
     standalone: true,
@@ -52,7 +53,7 @@ export interface TransactionsFilter {
     templateUrl: 'transactions.component.html',
     styleUrl: 'transactions.component.scss',
     standalone: true,
-    imports: [AppPage, AppFilterPanel, AppList, AmountBarColumn, CategorySelect]
+    imports: [AppPage, AppFilterPanel, AppList, AmountBarColumn, CategorySelect, TranslateModule]
 })
 
 export class TransactionsPage implements OnInit {
@@ -81,25 +82,25 @@ export class TransactionsPage implements OnInit {
 
     async ngOnInit() { 
         this.filters = [
-            { type: 'custom', label: 'Category', field: 'categoryId', component: CategorySelect },
-            { type: 'date', label: 'Date from', field: 'dateFrom' },
-            { type: 'date', label: 'Date to', field: 'dateTo' },
-            { type: 'number', label: 'Amount min', field: 'amountMin' },
-            { type: 'number', label: 'Amount max', field: 'amountMax' },
+            { type: 'custom', label: 'budget.category', field: 'categoryId', component: CategorySelect },
+            { type: 'date', label: 'budget.dateFrom', field: 'dateFrom' },
+            { type: 'date', label: 'budget.dateTo', field: 'dateTo' },
+            { type: 'number', label: 'budget.amountMin', field: 'amountMin' },
+            { type: 'number', label: 'budget.amountMax', field: 'amountMax' },
         ]
 
         this.columns = [
-            { label: 'Data', value: x => x.date },
-            { label: 'Kategoria', value: x => x.categoryName },
-            { label: 'Opis', value: x => x.description },
-            { label: 'Kwota', value: x => Format.decimal(x.amount), right: true },
+            { label: 'budget.date', value: x => x.date },
+            { label: 'budget.category', value: x => x.categoryName },
+            { label: 'budget.description', value: x => x.description },
+            { label: 'budget.amount', value: x => Format.decimal(x.amount), right: true },
             { label: '', component: AmountBarColumn, width: '20%' },
         ]
 
         this.actions = [
-            { icon: 'pi pi-plus', label: 'Dodaj' },
-            { icon: 'pi pi-file-import', label: 'Importuj' },
-            { icon: 'pi pi-file-export', label: 'Eksportuj' },
+            { icon: 'pi pi-plus', label: 'app.add' },
+            { icon: 'pi pi-file-import', label: 'app.import' },
+            { icon: 'pi pi-file-export', label: 'app.export' },
         ]
 
         await this.fetchTransactions()

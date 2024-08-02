@@ -1,1 +1,8 @@
-<p-menu [model]="items" styleClass="w-full h-full"/>
+<p-menu [model]="items" styleClass="w-full h-full">
+    <ng-template pTemplate="submenuheader" let-item>
+        <div style="display: flex; gap: 10px; align-items: center;">
+            <!-- <div style="width: 16px; height: 16px; border-radius: 50%; background-color: var(--primary-color);"></div> -->
+            <span class="text-primary font-bold">{{ item.label }}</span>
+        </div>
+    </ng-template>
+</p-menu>

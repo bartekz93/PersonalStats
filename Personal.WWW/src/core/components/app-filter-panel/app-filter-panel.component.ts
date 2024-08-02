@@ -6,6 +6,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { CardModule } from 'primeng/card';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { AppDynamicComponent } from '../app-dynamic/app-dynamic.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 export interface AppFilterPanelDefinition<T> {
     type: string;
@@ -18,7 +19,7 @@ export interface AppFilterPanelDefinition<T> {
     standalone: true,
     selector: 'app-filter-panel',
     templateUrl: 'app-filter-panel.component.html',
-    imports: [ButtonModule, CardModule, CalendarModule, CommonModule, FormsModule, InputNumberModule, AppDynamicComponent]
+    imports: [ButtonModule, CardModule, CalendarModule, CommonModule, FormsModule, InputNumberModule, AppDynamicComponent, TranslateModule]
 })
 
 export class AppFilterPanel<T> implements OnInit {

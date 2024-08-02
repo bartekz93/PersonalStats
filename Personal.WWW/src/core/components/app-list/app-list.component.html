@@ -4,7 +4,7 @@
         <ng-template pTemplate="header">
             <tr>
                 @for (col of columns; track col.label) {
-                    <th [ngStyle]="getHeaderStyle(col)">{{ col.label }}</th>
+                    <th [ngStyle]="getHeaderStyle(col)">{{ col.label | translate }}</th>
                 }
             </tr>
         </ng-template>

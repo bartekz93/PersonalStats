@@ -1,0 +1,18 @@
+{
+    "app.clear": "Clear",
+    "app.search": "Search",
+    "app.add": "Add",
+    "app.import": "Import",
+    "app.export": "Export",
+
+
+    "budget.transactions": "Transactions",
+    "budget.category": "Category",
+    "budget.dateFrom": "Date from",
+    "budget.dateTo": "Date to",
+    "budget.amountMin": "Amount from",
+    "budget.amountMax": "Amount to",
+    "budget.date": "Date",
+    "budget.description": "Description",
+    "budget.amount": "Amount"
+}

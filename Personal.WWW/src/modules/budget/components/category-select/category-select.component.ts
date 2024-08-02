@@ -3,10 +3,11 @@ import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { Category, CategoryService } from '../../services/category.service';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     standalone: true,
-    imports: [DropdownModule, FormsModule, CommonModule],
+    imports: [DropdownModule, FormsModule, CommonModule, TranslateModule],
     selector: 'category-select',
     templateUrl: './category-select.component.html'
 })

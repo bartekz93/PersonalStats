@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { AppDynamicComponent } from '../app-dynamic/app-dynamic.component';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 export interface AppListColumnDefinition<T> {
     label: string;
@@ -13,7 +14,7 @@ export interface AppListColumnDefinition<T> {
 
 @Component({
     standalone: true,
-    imports: [ TableModule, AppDynamicComponent, CommonModule ],
+    imports: [ TableModule, AppDynamicComponent, CommonModule, TranslateModule ],
     selector: 'app-list',
     templateUrl: 'app-list.component.html',
     styleUrl: 'app-list.component.scss'
