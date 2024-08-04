@@ -1,0 +1,18 @@
+<p-dropdown 
+    [options]="langs" 
+    [ngModel]="selected"
+    (ngModelChange)="change($event)"
+    optionLabel="name"
+    placeholder="">
+        <ng-template pTemplate="selectedItem">
+            <div class="flex align-items-center gap-2" *ngIf="selected.code">
+                <img [src]="'flags/'+selected.code+'.png'" style="width: 18px" />
+                {{ selected.name }}
+            </div>
+        </ng-template>
+        <ng-template let-lang pTemplate="item">
+            <div class="flex align-items-center gap-2">
+                <img [src]="'flags/'+lang.code+'.png'" style="width: 18px" /> {{ lang.name }}
+            </div>
+        </ng-template>
+</p-dropdown>
