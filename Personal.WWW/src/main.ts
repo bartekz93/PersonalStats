@@ -9,6 +9,7 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
 import {TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { MessageService } from 'primeng/api';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
     return new TranslateHttpLoader(httpClient, './i18n/', '.json');
@@ -16,6 +17,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 
 bootstrapApplication(AppComponent, {
     providers: [
+        MessageService,
       provideHttpClient(),
       provideAnimationsAsync(),
       provideZoneChangeDetection({ eventCoalescing: true }), 

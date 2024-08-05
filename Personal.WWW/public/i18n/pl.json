@@ -1,9 +1,12 @@
 {
+    "app.error": "Błąd",
+    "app.success": "Sukces",
     "app.clear": "Wyczyść",
     "app.search": "Szukaj",
     "app.add": "Dodaj",
     "app.import": "Importuj",
     "app.export": "Eksportuj",
+    "app.errors.unknownError": "Wystąpił niespodziewany błąd",
 
 
     "budget.transactions": "Transakcje",
@@ -20,10 +23,15 @@
     "user.password": "Hasło",
     "user.passwordRepeat": "Powtórz hasło",
     "user.signin": "Zaloguj",
+    "user.signout": "Wyloguj",
     "user.register": "Zarejestruj",
     "user.errors.loginIsRequired": "Login jest wymagany",
     "user.errors.passwordIsRequired": "Hasło jest wymagane",
     "user.errors.passwordRepeatIsRequired": "Powtórzenie hasła jest wymagane",
     "user.errors.passwordRepeatMismatch": "Powtórzenie hasła nie zgadza się",
-    "user.errors.passwordStrengthTooLow": "Hasło musi być dłuższe niż 6 znaków i zawierać wielką literę, małą literę, cyfrę i znak specjalny"
+    "user.errors.passwordStrengthTooLow": "Hasło musi być dłuższe niż 6 znaków i zawierać wielką literę, małą literę, cyfrę i znak specjalny",
+    "user.msg.registerSuccess": "Rejestracja zakończona pomyślnie",
+    "user.msg.logoutSuccess": "Poprawnie wylogowano",
+    "user.errors.loginAlreadyExists": "Podany login już istnieje",
+    "user.errors.invalidLoginOrPassword": "Nieprawidłowy login lub hasło"
 }

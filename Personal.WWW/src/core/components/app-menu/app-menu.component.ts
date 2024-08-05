@@ -3,6 +3,7 @@ import { MenuService } from '../../services/menu.service';
 import { AppMenuItem } from '../../models/app-menu-item.model';
 import { MenuItem } from 'primeng/api';
 import { MenuModule } from 'primeng/menu';
+import { UserService } from '../../../modules/user/services/user.service';
 
 @Component({
   selector: 'app-menu',

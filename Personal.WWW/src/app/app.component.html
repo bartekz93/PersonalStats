@@ -1,7 +1,11 @@
+<p-toast [life]="10000" />
 @if (isAuth()) {
     <div class="container">
         <div class="menu">
-            <div class="app-header">{{title}}</div>
+            <div class="app-header">
+                <div class="app-title">{{title}}</div>
+                <user-avatar />
+            </div>
             <app-menu></app-menu>
         </div>
         <div class="content">

@@ -8,11 +8,17 @@
 
 .app-header {
     height: 64px; 
-    line-height: 64px; 
-    font-size: 24px; 
-    color: white; 
     padding-left: 10px; 
     background: var(--primary-color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.app-title {
+    font-size: 24px; 
+    color: white; 
 }
 
 .menu {

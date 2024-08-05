@@ -40,3 +40,9 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+.vs/
+
+**/bin/**
+**/obj/**
+**/dist/**
+Personal.Api/Bootstraper/Personal.Bootstraper/appsettings.json

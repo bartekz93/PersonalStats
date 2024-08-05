@@ -15,11 +15,7 @@ export class AppActionContext {
         this.action = action;
     }
 
-    start() {
-        this.action.inProgress = true;
-    }
-
-    done() {
-        this.action.inProgress = false;
+    inProgress(v: boolean) {
+        this.action.inProgress = v;
     }
 }

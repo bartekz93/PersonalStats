@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+	<TargetFramework>net8.0</TargetFramework>
+	<Nullable>disable</Nullable>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<OutputType>Library</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Personal.Shared\Personal.Shared.csproj" />
+    <ProjectReference Include="..\Personal.User.Data\Personal.User.Data.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -23,7 +23,7 @@ export class CategorySelect implements OnInit {
 
     ngOnInit() { 
         this.categoriesLoading = true;
-        this.categoryService.getList().subscribe(data => {
+        this.categoryService.getList().then(data => {
             this.categories = data.rows;
             this.categoriesLoading = false;
         })

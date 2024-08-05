@@ -1,7 +1,5 @@
-import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
-import { environment } from "../../../environment/dev.env";
+import { BaseService } from "../../../core/services/base.service";
 
 export interface Category {
     id: number;
@@ -12,18 +10,6 @@ export interface Category {
 export interface SearchResult<T> {
     rows: T[];
     totalRows: number;
-}
-
-@Injectable({providedIn: 'root'})
-class BaseService {
-    private apiUrl = environment.apiUrl;
-
-    constructor(private httpClient: HttpClient) {
-    }
-
-    protected get<T>(url: string): Observable<T> {
-        return this.httpClient.get<T>(`${this.apiUrl}\\${url}`);
-    }
 }
 
 @Injectable({providedIn: 'root'})

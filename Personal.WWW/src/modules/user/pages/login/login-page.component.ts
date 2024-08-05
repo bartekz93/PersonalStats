@@ -1,5 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { UserService } from '../../../../core/services/user.service';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
@@ -18,6 +17,11 @@ import { passwordStrengthValidator } from '../../../../core/validators/passwordS
 import { DropdownModule } from 'primeng/dropdown';
 import { LangSelect } from '../../components/lang-select/lang-select.component';
 import { ThemeSelect } from '../../components/theme-select/theme-select.component';
+import { UserService } from '../../services/user.service';
+import { catchError, of } from 'rxjs';
+import { AppMessageService } from '../../../../core/services/app-message.service';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
     standalone: true,
@@ -27,16 +31,21 @@ import { ThemeSelect } from '../../components/theme-select/theme-select.componen
     styleUrl: 'login-page.component.scss'
 })
 export class LoginPage implements OnInit {
-    constructor(private userService: UserService, private router: Router) { }
+    constructor(private userService: UserService, private router: Router, private messageService: AppMessageService) { 
+    }
 
     loginForm!: AppForm;
     registerForm!: AppForm;
 
     @ViewChild('slider') slider!: ElementRef<HTMLDivElement>;
 
+    redirectAfterLogin() {
+        this.router.navigateByUrl('/budget/transactions')
+    }
+
     ngOnInit() { 
         if (this.userService.isAuthenticated()) {
-            this.router.navigateByUrl('/budget/transactions')
+            this.redirectAfterLogin();
         }
 
         this.loginForm = {
@@ -123,19 +132,57 @@ export class LoginPage implements OnInit {
           });
     }
 
-    submitLogin(p: AppFormSubmit<LoginModel>) {
-        console.log(p);
-        p.ctx.start();
+    async submitLogin(p: AppFormSubmit<LoginModel>) {
+        p.ctx.inProgress(true);
+        try {
+            await this.userService.login({
+                login: p.value.login,
+                password: p.value.password
+            });
 
-        setTimeout(() => p.ctx.done(), 5000);
+            await this.userService.loadAuthenticatedUser();
+
+            this.redirectAfterLogin();
+            
+            p.ctx.inProgress(false);
+        }
+        catch (err) {
+            this.messageService.handleError(err)
+        }
+        finally {
+            p.ctx.inProgress(false);
+        }
     }
 
-    submitRegister(p: LoginModel) {
-        console.log(p);
+    async submitRegister(p: AppFormSubmit<RegisterModel>) {
+        p.ctx.inProgress(true);
+        try {
+            await this.userService.register({
+                login: p.value.login,
+                password: p.value.password,
+                passwordRepeat: p.value.passwordRepeat
+            });
+
+            p.ctx.inProgress(false);
+
+            this.messageService.success('user.msg.registerSuccess')
+        }
+        catch (err) {
+            this.messageService.handleError(err)
+        }
+        finally {
+            p.ctx.inProgress(false);
+        }
     }
 }
 
 interface LoginModel {
     login: string;
     password: string;
+}
+
+interface RegisterModel {
+    login: string;
+    password: string;
+    passwordRepeat: string;
 }
