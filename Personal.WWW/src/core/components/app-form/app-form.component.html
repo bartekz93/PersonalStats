@@ -1,0 +1,25 @@
+<form [formGroup]="formGroup" (ngSubmit)="submit()">
+    @let controls = form.controls;
+    @for (c of controls; track c.field) {
+        @let fc = formGroup.get(c.field);
+        @if (fc) {
+            @let isInvalid = fc.invalid && fc.touched;
+            <app-dynamic [component]="c.component" [label]="c.label" [fc]="fc" />
+            @if (isInvalid && c.messages) {
+                @for (key of keys(c.messages); track key) {
+                    @let errors = formGroup.get(c.field)?.errors;
+                    @if (errors && errors[key]) {
+                        <div class="text-justify">
+                            <small class="text-red-500">{{c.messages[key] | translate }}</small>
+                        </div>
+                    }
+                }
+            } 
+        }
+    }
+    <div class="grid mt-4 actions">
+        @for (a of form.actions; track a.label) {
+            <app-action [action]="a" />
+        }
+    </div>
+</form>

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AppPageAction } from '../../models/app-page-action.model';
+import { AppAction } from '../../models/app-page-action.model';
 import { ButtonModule } from 'primeng/button';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -16,7 +16,7 @@ export class AppPage implements OnInit {
 
     @Input() withBack: boolean = true;
     @Input() title: string = '';
-    @Input() actions: AppPageAction[] = [];
+    @Input() actions: AppAction[] = [];
 
     ngOnInit(): void {
     }

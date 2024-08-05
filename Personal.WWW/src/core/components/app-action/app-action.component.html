@@ -1,0 +1,9 @@
+<p-button 
+    (onClick)="click()" 
+    [loading]="action.inProgress" 
+    [icon]="action.icon" 
+    [type]="action.primary ? 'submit' : 'button'" 
+    size="small" 
+    [outlined]="!action.primary"
+    [label]="action.label | translate" 
+/>

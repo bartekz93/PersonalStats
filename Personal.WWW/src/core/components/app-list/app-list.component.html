@@ -1,10 +1,22 @@
 <div class="app-list">
-    <p-table [value]="items" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="5"
-        [showCurrentPageReport]="true" [rowsPerPageOptions]="[5, 10, 25, 50]">
+    @if (loading) {
+        <p-progressBar  mode="indeterminate" [style]="{ height: '6px' }" />
+    }
+
+    <p-table [value]="items" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="5" [totalRecords]="totalRows" [lazy]="true" (onLazyLoad)="load($event)" [customSort]="true"
+        [showCurrentPageReport]="true" [rowsPerPageOptions]="[5, 10, 25, 50]" [sortField]="sortField" [sortOrder]="sortOrder">
         <ng-template pTemplate="header">
             <tr>
                 @for (col of columns; track col.label) {
-                    <th [ngStyle]="getHeaderStyle(col)">{{ col.label | translate }}</th>
+                    @if (col.sortable) {
+                        <th [pSortableColumn]="col.name" [ngStyle]="getHeaderStyle(col)">
+                            {{ col.label | translate }}
+                            <p-sortIcon [field]="col.name" />
+                        </th>
+                    }
+                    @else {
+                        <th [ngStyle]="getHeaderStyle(col)">{{ col.label | translate }}</th>
+                    }
                 }
             </tr>
         </ng-template>

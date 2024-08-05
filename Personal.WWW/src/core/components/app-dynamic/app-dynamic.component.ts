@@ -15,6 +15,9 @@ export class AppDynamicComponent implements OnInit {
     @Input() value: any;
     @Output() valueChange: EventEmitter<any> = new EventEmitter();
 
+    @Input() fc?: any;
+    @Input() label?: string;
+
     @ViewChild('body', {read: ViewContainerRef}) body!: ViewContainerRef;
 
     ref: any
@@ -23,7 +26,9 @@ export class AppDynamicComponent implements OnInit {
 
     ngOnChanges() {
         if (this.ref) {
-            this.ref.instance.value = this.value;
+            if (this.value) {
+                this.ref.instance.value = this.value;
+            }
         }
     }
 
@@ -31,6 +36,12 @@ export class AppDynamicComponent implements OnInit {
         this.ref = this.body.createComponent(this.component) as any;
         if (this.value) {
             this.ref.instance.value = this.value;
+        }
+        if (this.fc) {
+            this.ref.instance.fc = this.fc;
+        }
+        if (this.label) {
+            this.ref.instance.label = this.label;
         }
         if (this.ref.instance.valueChange) {
             this.ref.instance.valueChange.subscribe((e: any) => {

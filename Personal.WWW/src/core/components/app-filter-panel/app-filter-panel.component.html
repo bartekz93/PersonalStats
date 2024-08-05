@@ -4,7 +4,7 @@
             @for (filter of filters; track filter.label) {
                 <div class="col">
                     @if (filter.type == 'date') {
-                        <p-calendar [ngModel]="getValue(filter.field)" (ngModelChange)="setValue(filter.field, $event)" [iconDisplay]="'input'" [showIcon]="true" [placeholder]="filter.label | translate" />
+                        <p-calendar dateFormat="yy-mm-dd" [ngModel]="getValue(filter.field)" (ngModelChange)="setValue(filter.field, $event)" [iconDisplay]="'input'" [showIcon]="true" [placeholder]="filter.label | translate" />
                     }
                     @if (filter.type == 'number') {
                         <p-inputNumber [ngModel]="getValue(filter.field)" (ngModelChange)="setValue(filter.field, $event)" [showClear]="true" mode="decimal" [placeholder]="filter.label | translate" [maxFractionDigits]="2" />
