@@ -1,9 +1,1 @@
-<app-page [title]="'budget.transactions' | translate" [actions]="actions">
-    
-
-    <app-filter-panel [filters]="filters" [value]="filter" (onClear)="clearFilter()"/>
-
-    <div class="mt-3">
-        <app-list [columns]="columns" [items]="transactions" />
-    </div>
-</app-page>
+<app-page-search [page]="page" />
