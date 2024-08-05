@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToggleButtonModule } from 'primeng/togglebutton';
-import { ThemeService } from '../../services/ThemeService.service';
+import { ThemeService } from '../../services/theme.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 

@@ -14,5 +14,16 @@
     "budget.amountMax": "Kwota do",
     "budget.date": "Data",
     "budget.description": "Opis",
-    "budget.amount": "Kwota"
+    "budget.amount": "Kwota",
+
+    "user.login": "Login",
+    "user.password": "Hasło",
+    "user.passwordRepeat": "Powtórz hasło",
+    "user.signin": "Zaloguj",
+    "user.register": "Zarejestruj",
+    "user.errors.loginIsRequired": "Login jest wymagany",
+    "user.errors.passwordIsRequired": "Hasło jest wymagane",
+    "user.errors.passwordRepeatIsRequired": "Powtórzenie hasła jest wymagane",
+    "user.errors.passwordRepeatMismatch": "Powtórzenie hasła nie zgadza się",
+    "user.errors.passwordStrengthTooLow": "Hasło musi być dłuższe niż 6 znaków i zawierać wielką literę, małą literę, cyfrę i znak specjalny"
 }

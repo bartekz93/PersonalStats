@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { DropdownModule } from 'primeng/dropdown';
-import { LangService } from '../../services/LangService.service';
+import { LangService } from '../../services/lang.service';
 
 @Component({
     standalone: true,

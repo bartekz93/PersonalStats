@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="toolbar">
+        <lang-select />
+        <theme-select />
+    </div>
+    <div class="content">
+        <div class="box">
+            <span class="mb-3 text-3xl text-primary">PersonalStats</span>
+            <div class="slider" #slider>
+                <div class="slide-box">
+                    <app-form [form]="loginForm" (onSubmit)="submitLogin($event)" />
+                </div>
+
+                <div class="slide-box">
+                    <app-form [form]="registerForm" (onSubmit)="submitRegister($event)" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

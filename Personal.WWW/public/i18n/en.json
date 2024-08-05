@@ -14,5 +14,11 @@
     "budget.amountMax": "Amount to",
     "budget.date": "Date",
     "budget.description": "Description",
-    "budget.amount": "Amount"
+    "budget.amount": "Amount",
+
+    "user.login": "Login",
+    "user.password": "Password",
+    "user.passwordRepeat": "Repeat password",
+    "user.signin": "Sign in",
+    "user.register": "Register"
 }

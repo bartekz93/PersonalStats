@@ -1,12 +1,16 @@
-<div class="container">
-    <div class="menu">
-        <div class="app-header">{{title}}</div>
-        <app-menu></app-menu>
+@if (isAuth()) {
+    <div class="container">
+        <div class="menu">
+            <div class="app-header">{{title}}</div>
+            <app-menu></app-menu>
+        </div>
+        <div class="content">
+            <router-outlet />
+        </div> 
     </div>
-    <div class="content">
+}
+@else {
+    <div>
         <router-outlet />
     </div> 
-</div>
-
-
-
+}
