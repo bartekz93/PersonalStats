@@ -7,15 +7,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{5E65
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bootstraper", "Bootstraper", "{F8F98DCC-0CBF-4618-90D0-C6C24139F37F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Personal.Bootstraper", "Personal.Api\Bootstraper\Personal.Bootstraper\Personal.Bootstraper.csproj", "{9938454D-F36C-4DBF-A6EB-AD38D7E6BF2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Personal.Bootstraper", "Personal.Api\Bootstraper\Personal.Bootstraper\Personal.Bootstraper.csproj", "{9938454D-F36C-4DBF-A6EB-AD38D7E6BF2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Personal.User", "Personal.Api\Modules\Personal.User\Personal.User.csproj", "{2D23035F-B184-434E-953B-FB04D22D630F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Personal.User.Api", "Personal.Api\Modules\User\Personal.User.Api\Personal.User.Api.csproj", "{2D23035F-B184-434E-953B-FB04D22D630F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{8B0E820A-0AE6-45EB-B946-08E7BE94B340}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Personal.Shared", "Personal.Api\Shared\Personal.Shared\Personal.Shared.csproj", "{732EE807-EA83-4A7E-BC9D-3C716B8033B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Personal.Shared", "Personal.Api\Shared\Personal.Shared\Personal.Shared.csproj", "{732EE807-EA83-4A7E-BC9D-3C716B8033B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Personal.User.Data", "Personal.Api\Modules\Personal.User.Data\Personal.User.Data.csproj", "{1A15A66A-CDEA-4025-95BA-34A7D322CEB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Personal.User.Data", "Personal.Api\Modules\User\Personal.User.Data\Personal.User.Data.csproj", "{1A15A66A-CDEA-4025-95BA-34A7D322CEB5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "User", "User", "{F796E4CA-4106-4A6F-B463-0FEA2C5FDF60}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Budget", "Budget", "{85A5ABFB-4EBF-4940-B17D-67FF7D8B6C76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,9 +49,11 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9938454D-F36C-4DBF-A6EB-AD38D7E6BF2E} = {F8F98DCC-0CBF-4618-90D0-C6C24139F37F}
-		{2D23035F-B184-434E-953B-FB04D22D630F} = {5E65FF9D-5932-46D8-80F9-70FD22DA5B9F}
+		{2D23035F-B184-434E-953B-FB04D22D630F} = {F796E4CA-4106-4A6F-B463-0FEA2C5FDF60}
 		{732EE807-EA83-4A7E-BC9D-3C716B8033B5} = {8B0E820A-0AE6-45EB-B946-08E7BE94B340}
-		{1A15A66A-CDEA-4025-95BA-34A7D322CEB5} = {5E65FF9D-5932-46D8-80F9-70FD22DA5B9F}
+		{1A15A66A-CDEA-4025-95BA-34A7D322CEB5} = {F796E4CA-4106-4A6F-B463-0FEA2C5FDF60}
+		{F796E4CA-4106-4A6F-B463-0FEA2C5FDF60} = {5E65FF9D-5932-46D8-80F9-70FD22DA5B9F}
+		{85A5ABFB-4EBF-4940-B17D-67FF7D8B6C76} = {5E65FF9D-5932-46D8-80F9-70FD22DA5B9F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4C095D50-A2A8-4011-8487-61850F94ECF8}

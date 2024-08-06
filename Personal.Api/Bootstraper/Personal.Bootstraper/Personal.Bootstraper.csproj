@@ -9,8 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Modules\Personal.User\Personal.User.csproj" />
-    <ProjectReference Include="..\..\Shared\Personal.Shared\Personal.Shared.csproj" />
+    <ProjectReference Include="..\..\Modules\User\Personal.User.Api\Personal.User.Api.csproj" />
   </ItemGroup>
 
   <ItemGroup>

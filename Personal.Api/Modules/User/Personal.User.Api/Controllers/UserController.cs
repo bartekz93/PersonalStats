@@ -19,13 +19,6 @@ namespace Personal.User.Controllers
             this.userService = userService;
         }
 
-        [HttpGet("")]
-        [Authorize]
-        public async Task<IActionResult> Get()
-        {
-            return Ok("asd");
-        }
-
         [HttpGet("authenticated")]
         public IActionResult GetAuthenticatedUser()
         {
@@ -72,7 +65,7 @@ namespace Personal.User.Controllers
 
         [HttpPost("logout")]
         [Authorize]
-        public async Task<IActionResult> Logout(UserLoginDto dto)
+        public IActionResult Logout(UserLoginDto dto)
         {
             HttpContext.Response.Cookies.Append("AuthToken", string.Empty, new CookieOptions
             {

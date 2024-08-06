@@ -21,7 +21,7 @@ namespace Personal.Bootstraper
             builder.Services.AddControllers();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddUserModule("");
+            builder.Services.AddUserModule();
 
             builder.Services.AddLogging(x => x.AddLog4Net("log4net.config"));
 

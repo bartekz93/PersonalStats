@@ -5,10 +5,10 @@ namespace Personal.User
 {
     public static class DI
     {
-        public static void AddUserModule(this IServiceCollection services, string connectionString)
+        public static void AddUserModule(this IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
-            services.AddUserData(connectionString);
+            services.AddUserData();
         }
     }
 }
