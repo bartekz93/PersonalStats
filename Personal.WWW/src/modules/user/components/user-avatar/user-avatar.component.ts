@@ -6,10 +6,12 @@ import { Router } from '@angular/router';
 import { TooltipModule } from 'primeng/tooltip';
 import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
+import { ThemeSelect } from '../theme-select/theme-select.component';
+import { LangSelect } from '../lang-select/lang-select.component';
 
 @Component({
     standalone: true,
-    imports: [ButtonModule, OverlayPanelModule, TooltipModule, TranslateModule],
+    imports: [ButtonModule, OverlayPanelModule, TooltipModule, TranslateModule, ThemeSelect, LangSelect],
     selector: 'user-avatar',
     templateUrl: 'user-avatar.component.html',
     styleUrl: 'user-avatar.component.scss'

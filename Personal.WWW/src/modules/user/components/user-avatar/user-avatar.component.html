@@ -1,6 +1,12 @@
 <div class="user-avatar" (click)="userPanelClick($event)" [pTooltip]="loginName()" tooltipPosition="right" >
     {{ loginInitial() }}
     <p-overlayPanel #op>
-        <p-button [loading]="signingOut" (onClick)="signout()" label="Primary" [text]="true" [rounded]="true" icon="pi pi-sign-out" [label]="'user.signout' | translate" size="small" />
+        <div class="user-panel">
+            <div>
+                <theme-select class="mr-2"></theme-select>
+                <lang-select></lang-select>
+            </div>
+            <p-button [loading]="signingOut" (onClick)="signout()" label="Primary" [text]="true" [rounded]="true" icon="pi pi-sign-out" [label]="'user.signout' | translate" size="small" />
+        </div>
     </p-overlayPanel>
 </div>
