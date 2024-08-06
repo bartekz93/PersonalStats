@@ -23,7 +23,7 @@
 
 .menu {
     box-sizing: border-box;
-    background-color: whitesmoke;
+    background-color: var(--surface-ground);
     width: 250px;
 }
 
@@ -31,5 +31,5 @@
     flex: 1;
     box-sizing: border-box;
     overflow: auto;
-    background-color: #fafafa;
+    background-color: var(--surface-ground);
 }
