@@ -5,22 +5,19 @@ import { UserService } from '../../modules/user/services/user.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate, CanActivateChild  {
+export class AuthGuard implements CanActivate  {
   constructor(private userService: UserService, private router: Router) {}
 
-  canActivate(): boolean {
-    return this.checkAuth();
+  async canActivate(): Promise<boolean> {
+    return await this.checkAuth();
   }
 
-  canActivateChild(): boolean {
-    return this.checkAuth();
-  }
 
-  canLoad(): boolean {
-    return this.checkAuth();
-  }
+  private async checkAuth(): Promise<boolean> {
+    if (this.userService.user == undefined) {
+        await this.userService.loadAuthenticatedUser()
+    }
 
-  private checkAuth(): boolean {
     if (this.userService.isAuthenticated()) {
       return true;
     } else {

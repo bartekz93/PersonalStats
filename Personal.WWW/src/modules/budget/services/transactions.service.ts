@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { BaseService, SearchCriteria, SearchResult } from "../../../core/services/base.service";
 
 export interface Transaction {
     date: string;
@@ -11,224 +12,18 @@ export interface Transaction {
     relWidth?: string;
 }
 
-@Injectable({providedIn: 'root'})
-export class TransactionService {
-    constructor(private httpClient: HttpClient) {
-        
-    }
+export interface TransactionCriteria extends SearchCriteria {
+    dateFrom?: string;
+    dateTo?: string;
+    amountMin?: number;
+    amountMax?: number;
+    categoryId?: number;
+}
 
-    getTransactions(): Transaction[] {
-        return [
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: -10.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: -25.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: 50.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: -10.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: -25.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: 50.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: -10.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: -25.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: 50.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: -10.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: -25.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: 50.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: -10.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: -25.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: 50.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: -10.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: -25.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: 50.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: -10.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: -25.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: 50.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: -10.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: -25.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: 50.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: -10.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: -25.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: 50.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: -10.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: -25.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-            {
-                date: '2024-01-01',
-                description: '',
-                amount: 50.0,
-                categoryId: 1,
-                categoryName: ''
-            },
-        ]
+@Injectable({providedIn: 'root'})
+export class TransactionService extends BaseService {
+
+    search(criteria: TransactionCriteria): Promise<SearchResult<Transaction>> {
+        return this.get('budget\transactions');
     }
 }

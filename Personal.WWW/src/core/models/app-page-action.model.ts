@@ -1,7 +1,7 @@
 export interface AppAction {
     label: string;
     icon?: string;
-    onClick?: (ctx: AppActionContext) => void;
+    onClick?: (ctx: AppActionContext, data?: any) => void;
     primary?: boolean;
     submit?: boolean;
     inProgress?: boolean;

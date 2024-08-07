@@ -8,7 +8,15 @@
         </div>
     </ng-template>
     
-    <p-dropdown [loading]="categoriesLoading" [options]="categories" [ngModel]="value" (ngModelChange)="onChange($event)" [placeholder]="'budget.category' | translate" optionValue="id" optionLabel="name" [showClear]="true">
+    <p-dropdown [loading]="categoriesLoading" 
+        [options]="categories" 
+        [ngModel]="fc.value" 
+        (ngModelChange)="update($event)" 
+        [placeholder]="'budget.category' | translate" 
+        optionValue="id" 
+        optionLabel="name" 
+        [showClear]="true"
+    >
         <ng-template let-item pTemplate="item">
             <ng-container *ngTemplateOutlet="itemTemplate;context:{item, small: false}"></ng-container> 
         </ng-template>

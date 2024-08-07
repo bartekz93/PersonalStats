@@ -12,7 +12,7 @@ import { AppText } from '../../../../core/controls/app-text.component';
 import { AppPassword } from '../../../../core/controls/app-password.component';
 import { AppForm, AppFormSubmit } from '../../../../core/models/app-form';
 import { sameValueValidator } from '../../../../core/validators/same-value.validator';
-import { AppAction } from '../../../../core/models/app-page-action.model';
+import { AppAction, AppActionContext } from '../../../../core/models/app-page-action.model';
 import { passwordStrengthValidator } from '../../../../core/validators/passwordStrengthValidator';
 import { DropdownModule } from 'primeng/dropdown';
 import { LangSelect } from '../../components/lang-select/lang-select.component';
@@ -74,7 +74,8 @@ export class LoginPage implements OnInit {
                 }, {
                     label: 'user.login',
                     primary: true,
-                    submit: true
+                    submit: true,
+                    onClick: (x, y) => this.submitLogin(x, y)
                 },
             ]
         };
@@ -117,7 +118,8 @@ export class LoginPage implements OnInit {
                 }, {
                     label: 'user.register',
                     primary: true,
-                    submit: true
+                    submit: true,
+                    onClick: (x, y) => this.submitRegister(x, y)
                 },
             ]
         };
@@ -132,38 +134,36 @@ export class LoginPage implements OnInit {
           });
     }
 
-    async submitLogin(p: AppFormSubmit<LoginModel>) {
-        p.ctx.inProgress(true);
+    async submitLogin(actionCtx: AppActionContext, form: LoginModel) {
+        actionCtx.inProgress(true);
         try {
             await this.userService.login({
-                login: p.value.login,
-                password: p.value.password
+                login: form.login,
+                password: form.password
             });
 
             await this.userService.loadAuthenticatedUser();
 
             this.redirectAfterLogin();
             
-            p.ctx.inProgress(false);
+            actionCtx.inProgress(false);
         }
         catch (err) {
             this.messageService.handleError(err)
         }
         finally {
-            p.ctx.inProgress(false);
+            actionCtx.inProgress(false);
         }
     }
 
-    async submitRegister(p: AppFormSubmit<RegisterModel>) {
-        p.ctx.inProgress(true);
+    async submitRegister(actionCtx: AppActionContext, form: RegisterModel) {
+        actionCtx.inProgress(true);
         try {
             await this.userService.register({
-                login: p.value.login,
-                password: p.value.password,
-                passwordRepeat: p.value.passwordRepeat
+                login: form.login,
+                password: form.password,
+                passwordRepeat: form.passwordRepeat
             });
-
-            p.ctx.inProgress(false);
 
             this.messageService.success('user.msg.registerSuccess')
         }
@@ -171,7 +171,7 @@ export class LoginPage implements OnInit {
             this.messageService.handleError(err)
         }
         finally {
-            p.ctx.inProgress(false);
+            actionCtx.inProgress(false);
         }
     }
 }

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit, forwardRef } from '@angular/core';
-import { ControlValueAccessor, FormControl, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { InputTextModule } from 'primeng/inputtext';
 
@@ -8,13 +8,11 @@ import { InputTextModule } from 'primeng/inputtext';
     standalone: true,
     imports: [InputTextModule, FormsModule, TranslateModule, ReactiveFormsModule, CommonModule],
     selector: 'app-text',
-    template: `<input [ngClass]="{ 'ng-invalid': isInvalid(), 'ng-dirty': isInvalid() }" type="text" [ngModel]="value" (ngModelChange)="update($event)" pInputText [placeholder]="label | translate" />`
+    template: `<input [ngClass]="{ 'ng-invalid': isInvalid(), 'ng-dirty': isInvalid() }" type="text" [ngModel]="fc.value" (ngModelChange)="update($event)" pInputText [placeholder]="label | translate" />`
 })
 
 export class AppText {
     constructor() { }
-
-    value: string = '';
 
     @Input() fc!: FormControl;
     @Input() label!: string;
@@ -24,7 +22,6 @@ export class AppText {
     }
 
     update(val: string): void {
-        this.value = val;
         this.fc.markAsTouched();
         this.fc.setValue(val);
     }

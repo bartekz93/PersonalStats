@@ -1,15 +1,22 @@
 {
     "app.error": "Błąd",
+    "app.currency": "Waluta",
     "app.success": "Sukces",
     "app.clear": "Wyczyść",
     "app.search": "Szukaj",
     "app.add": "Dodaj",
     "app.import": "Importuj",
     "app.export": "Eksportuj",
+    "app.save": "Zapisz",
+    "app.cancel": "Anuluj",
     "app.errors.unknownError": "Wystąpił niespodziewany błąd",
 
 
     "budget.transactions": "Transakcje",
+    "budget.name": "Nazwa",
+    "budget.currency": "Waluta",
+    "budget.wallets": "Portfele",
+    "budget.categories": "Kategorie",
     "budget.category": "Kategoria",
     "budget.dateFrom": "Data od",
     "budget.dateTo": "Data do",
@@ -18,6 +25,9 @@
     "budget.date": "Data",
     "budget.description": "Opis",
     "budget.amount": "Kwota",
+    "budget.addWallet": "Dodaj portfel",
+    "budget.error.walletNameIsRequired": "Nazwa portfela jest wymagana",
+    "budget.msg.walletCreateSuccess": "Pomyślnie dodano portfel",
 
     "user.login": "Login",
     "user.password": "Hasło",

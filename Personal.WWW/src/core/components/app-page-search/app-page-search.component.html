@@ -1,6 +1,18 @@
 <app-page [title]="page.name | translate" [actions]="page.actions">
-    <app-filter-panel [filters]="page.filters" [value]="page.filter" (onClear)="clearFilter()"/>
+    <p-card>
+        <app-form [form]="form" [horizontal]="true"/>
+    </p-card>
     <div class="mt-3">
-        <app-list [columns]="page.columns" [items]="page.items || []" [sortField]="sortField" [sortOrder]="sortOrder"/>
+        <app-list 
+            [columns]="page.columns" 
+            [items]="items" 
+            [sortField]="sortField" 
+            [sortOrder]="sortOrder" 
+            [totalRows]="totalRows" 
+            [offset]="offset" 
+            [rows]="rows"
+            [loading]="listLoading"
+            (onLoad)="onChangeTable($event)"
+        />
     </div>
 </app-page>

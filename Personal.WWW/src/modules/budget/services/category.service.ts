@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BaseService } from "../../../core/services/base.service";
+import { BaseService, SearchResult } from "../../../core/services/base.service";
 
 export interface Category {
     id: number;
@@ -7,10 +7,6 @@ export interface Category {
     type: string;
 }
 
-export interface SearchResult<T> {
-    rows: T[];
-    totalRows: number;
-}
 
 @Injectable({providedIn: 'root'})
 export class CategoryService extends BaseService {

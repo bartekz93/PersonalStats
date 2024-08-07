@@ -4,13 +4,14 @@
         @if (withBack) {
             <p-button (click)="back()" icon="pi pi-angle-left" [rounded]="true" [text]="true" />
         }
-        {{title}}
+        {{title | translate}}
         </div>
         
-        <div>
+        <div class="mr-2">
             @for (action of actions; track action.label) {
-                <p-button class="mr-2" severity="primary" size="small" [outlined]="true" [icon]="action.icon" [label]="action.label | translate"></p-button>
+                <app-action class="ml-2" [action]="action" />
             }
+            <ng-content select="[actions]"></ng-content>
         </div>
     </div>
     <div class="content">

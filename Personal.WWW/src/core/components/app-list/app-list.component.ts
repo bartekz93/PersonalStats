@@ -4,6 +4,7 @@ import { AppDynamicComponent } from '../app-dynamic/app-dynamic.component';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { SearchCriteria, SearchResult } from '../../services/base.service';
 
 export interface AppListColumnDefinition<T> {
     name: string;
@@ -25,18 +26,17 @@ export interface AppListColumnDefinition<T> {
 
 export class AppList<T> implements OnInit {
     constructor() { }
-
-    @Input() loading?: boolean;
-    @Input() items!: T[];
+    
     @Input() columns!: AppListColumnDefinition<T>[];
-    @Input() sortField: string = '';
-    @Input() sortOrder: number = 1;
+    @Input() result!: SearchResult<T>;
+    @Input() criteria!: SearchCriteria;
+    @Input() defaultSort = ''
+    @Input() loading = false
 
-    @Output() onLoad: EventEmitter<any> = new EventEmitter();
+    @Output() onSearch: EventEmitter<any> = new EventEmitter();
 
-    totalRows = 1000;
-
-    ngOnInit() { }
+    ngOnInit() { 
+    }
 
     getCellStyle(col: AppListColumnDefinition<T>, item: T) {
         return {
@@ -51,13 +51,13 @@ export class AppList<T> implements OnInit {
         }
     }
 
-    load(event: any) {
-        this.onLoad.emit(event);
-        console.log({
-            offset: event.first, 
-            pageSize: event.rows,
-            sortField: event.sortField,
-            sortOrder: event.sortOrder
-        });
+    onChange(e: any) {
+        let pageCriteria = {
+            offset: e.first,
+            rows: e.rows,
+            sortField: e.sortField,
+            sortOrder: e.sortOrder,
+        };
+        this.onSearch.emit(pageCriteria);
     }
 }

@@ -1,10 +1,24 @@
 <div class="app-list">
     @if (loading) {
         <p-progressBar  mode="indeterminate" [style]="{ height: '6px' }" />
+    } 
+    @else {
+        <p-progressBar [value]="0" [style]="{ height: '6px' }" />
     }
-
-    <p-table [value]="items" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="5" [totalRecords]="totalRows" [lazy]="true" (onLazyLoad)="load($event)" [customSort]="true"
-        [showCurrentPageReport]="true" [rowsPerPageOptions]="[5, 10, 25, 50]" [sortField]="sortField" [sortOrder]="sortOrder">
+    <p-table [value]="result.rows" 
+        [tableStyle]="{ 'min-width': '50rem' }" 
+        [paginator]="true" 
+        [rows]="criteria.rows" 
+        [first]="criteria.offset" 
+        [totalRecords]="result.totalRows" 
+        [lazy]="true" 
+        (onLazyLoad)="onChange($event)" 
+        [customSort]="true"
+        [showCurrentPageReport]="true" 
+        [rowsPerPageOptions]="[5, 10, 25, 50]" 
+        [sortField]="criteria.sortBy || ''" 
+        [sortOrder]="criteria.sortOrder || 1"
+    >
         <ng-template pTemplate="header">
             <tr>
                 @for (col of columns; track col.label) {

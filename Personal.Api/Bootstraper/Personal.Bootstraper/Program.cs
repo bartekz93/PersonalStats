@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Personal.Bootstraper.Middlewares;
 using Personal.User;
+using Personal.Budget;
 using System.Text;
 
 namespace Personal.Bootstraper
@@ -22,6 +23,7 @@ namespace Personal.Bootstraper
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddUserModule();
+            builder.Services.AddBudgetModule();
 
             builder.Services.AddLogging(x => x.AddLog4Net("log4net.config"));
 

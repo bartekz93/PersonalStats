@@ -4,6 +4,18 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Observable, catchError, firstValueFrom, throwError } from "rxjs";
 import { AppAction, AppActionContext } from "../models/app-page-action.model";
 
+export interface SearchResult<T> {
+    rows: T[];
+    totalRows: number;
+}
+
+export interface SearchCriteria {
+    offset?: number;
+    rows?: number;
+    sortBy?: string;
+    sortOrder?: number;
+}
+
 @Injectable({providedIn: 'root'})
 export class BaseService {
     private apiUrl = environment.apiUrl;
@@ -11,8 +23,12 @@ export class BaseService {
     constructor(private httpClient: HttpClient) {
     }
 
-    protected get<T>(url: string): Promise<T> {
-        return firstValueFrom(this.httpClient.get<T>(`${this.apiUrl}\\${url}`));
+    prepareQuery(obj: any) {
+        return '?'+Object.keys(obj).filter(x => obj[x] != undefined).map(x => `${x}=${obj[x]}`).join('&')
+    }
+
+    protected get<T>(url: string, obj?: any): Promise<T> {
+        return firstValueFrom(this.httpClient.get<T>(`${this.apiUrl}\\${url}${obj ? this.prepareQuery(obj) : ''}`, { withCredentials: true }));
     }
 
     protected get$<T>(url: string): Observable<T> {
@@ -20,6 +36,6 @@ export class BaseService {
     }
 
     protected post<T>(url: string, obj: any): Promise<T> {
-        return firstValueFrom(this.httpClient.post<T>(`${this.apiUrl}\\${url}`, obj));
+        return firstValueFrom(this.httpClient.post<T>(`${this.apiUrl}\\${url}`, obj, { withCredentials: true }));
     }
 }

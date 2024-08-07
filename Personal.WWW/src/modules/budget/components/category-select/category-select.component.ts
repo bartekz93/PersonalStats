@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { Category, CategoryService } from '../../services/category.service';
 import { CommonModule } from '@angular/common';
@@ -16,6 +16,8 @@ export class CategorySelect implements OnInit {
     categories: any[] = [];
     categoriesLoading: boolean = false;
 
+    @Input() fc!: FormControl;
+
     @Input() value: any;
     @Output() valueChange: EventEmitter<any> = new EventEmitter();
 
@@ -29,8 +31,9 @@ export class CategorySelect implements OnInit {
         })
     }
 
-    onChange(event: Category) {
-        this.valueChange.emit(event);
+    update(val: string): void {
+        this.fc.markAsTouched();
+        this.fc.setValue(val);
     }
 
     getItemStyle(item: any, small: boolean) {
