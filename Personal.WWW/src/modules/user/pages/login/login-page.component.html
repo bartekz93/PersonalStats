@@ -7,12 +7,39 @@
         <div class="box">
             <span class="mb-3 text-3xl text-primary">PersonalStats</span>
             <div class="slider" #slider>
-                <div class="slide-box">
-                    <app-form [form]="loginForm" />
+                <div class="slide-box" [inert]="slideVisible != 0">
+                    <app-form (onSubmit)="submitLogin($event)" [formGroup]="loginForm">
+                        <app-text label="user.login" [fc]="loginForm.get('login')">
+                            <app-error rule="required" msg="user.errors.loginIsRequired" />
+                        </app-text>
+                        <app-password label="user.password" [fc]="loginForm.get('password')">
+                            <app-error rule="required" msg="user.errors.passwordIsRequired" />
+                        </app-password>
+                        <ng-container actions>
+                            <app-button [flat]="true" label="user.register" (onClick)="slide(1)" />
+                            <app-button [submit]="true" label="user.login" [loading]="isLogging" />
+                        </ng-container>
+                    </app-form>
                 </div>
 
-                <div class="slide-box">
-                    <app-form [form]="registerForm" />
+                <div class="slide-box" [inert]="slideVisible != 1">
+                    <app-form (onSubmit)="submitRegister($event)" [formGroup]="registerForm">
+                        <app-text label="user.login" [fc]="registerForm.get('login')">
+                            <app-error rule="required" msg="user.errors.loginIsRequired" />
+                        </app-text>
+                        <app-password label="user.password" [fc]="registerForm.get('password')">
+                            <app-error rule="required" msg="user.errors.passwordIsRequired" />
+                            <app-error rule="passwordStrength" msg="user.errors.passwordStrengthTooLow" />
+                        </app-password>
+                        <app-password label="user.passwordRepeat" [fc]="registerForm.get('passwordRepeat')">
+                            <app-error rule="required" msg="user.errors.passwordIsRequired" />
+                            <app-error rule="sameValue" msg="user.errors.passwordRepeatMismatch" />
+                        </app-password>
+                        <ng-container actions>
+                            <app-button [flat]="true" label="user.login" icon="pi pi-angle-left" (onClick)="slide(0)" />
+                            <app-button [submit]="true" label="user.register" [loading]="isRegistering"/>
+                        </ng-container>
+                    </app-form>
                 </div>
             </div>
         </div>

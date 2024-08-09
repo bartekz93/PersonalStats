@@ -1,43 +1,68 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
-import { AppFormComponent } from '../../../../core/components/app-form/app-form.component';
 import { AppText } from '../../../../core/controls/app-text.component';
 import { AppPassword } from '../../../../core/controls/app-password.component';
-import { AppForm, AppFormSubmit } from '../../../../core/models/app-form';
 import { sameValueValidator } from '../../../../core/validators/same-value.validator';
-import { AppAction, AppActionContext } from '../../../../core/models/app-page-action.model';
 import { passwordStrengthValidator } from '../../../../core/validators/passwordStrengthValidator';
-import { DropdownModule } from 'primeng/dropdown';
 import { LangSelect } from '../../components/lang-select/lang-select.component';
 import { ThemeSelect } from '../../components/theme-select/theme-select.component';
 import { UserService } from '../../services/user.service';
-import { catchError, of } from 'rxjs';
 import { AppMessageService } from '../../../../core/services/app-message.service';
-import { MessageService } from 'primeng/api';
-import { ToastModule } from 'primeng/toast';
+import { AppError } from '@core/components/app-error/app-error.component';
+import { AppButtonComponent } from '@core/components/app-button/app-button.component';
+import { AppFormComponent } from '@core/components/app-form/app-form.component';
 
 @Component({
     standalone: true,
-    imports: [InputTextModule, PasswordModule, CommonModule, FormsModule, TranslateModule, ButtonModule, AppFormComponent, ReactiveFormsModule, AppText, AppPassword, LangSelect, ThemeSelect],
+    imports: [
+        InputTextModule, 
+        PasswordModule,
+        CommonModule, 
+        FormsModule, 
+        TranslateModule, 
+        ButtonModule, 
+        ReactiveFormsModule, 
+        AppText, 
+        AppPassword, 
+        LangSelect, 
+        ThemeSelect, 
+        AppError, 
+        AppFormComponent,
+        AppButtonComponent],
     selector: 'login-page',
     templateUrl: 'login-page.component.html',
     styleUrl: 'login-page.component.scss'
 })
 export class LoginPage implements OnInit {
-    constructor(private userService: UserService, private router: Router, private messageService: AppMessageService) { 
-    }
 
-    loginForm!: AppForm;
-    registerForm!: AppForm;
+    loginForm: FormGroup;
+    registerForm: FormGroup;
+
+    isLogging = false;
+    isRegistering = false;
+
+    slideVisible = 0;
 
     @ViewChild('slider') slider!: ElementRef<HTMLDivElement>;
+
+    constructor(private ngZone: NgZone, private userService: UserService, private router: Router, private messageService: AppMessageService) { 
+        this.loginForm = new FormGroup({
+            login: new FormControl('', [ Validators.required ]),
+            password: new FormControl('', [ Validators.required ])
+        })
+
+        this.registerForm = new FormGroup({
+            login: new FormControl('', [ Validators.required ]),
+            password: new FormControl('', [ Validators.required, passwordStrengthValidator() ]),
+            passwordRepeat: new FormControl('', [ Validators.required, sameValueValidator('password') ])
+        })
+    }
 
     redirectAfterLogin() {
         this.router.navigateByUrl('/budget/transactions')
@@ -47,83 +72,6 @@ export class LoginPage implements OnInit {
         if (this.userService.isAuthenticated()) {
             this.redirectAfterLogin();
         }
-
-        this.loginForm = {
-            controls: [{
-                component: AppText,
-                field: 'login',
-                label: 'user.login',
-                value: '',
-                rules: [Validators.required],
-                messages: {
-                    required: 'user.errors.loginIsRequired'
-                }
-            }, {
-                component: AppPassword,
-                field: 'password',
-                label: 'user.password',
-                value: '',
-                rules: [Validators.required],
-                messages: {
-                    required: 'user.errors.passwordIsRequired'
-                }
-            }],
-            actions: [{
-                    label: 'user.register',
-                    onClick: () => this.slide(1)
-                }, {
-                    label: 'user.login',
-                    primary: true,
-                    submit: true,
-                    onClick: (x, y) => this.submitLogin(x, y)
-                },
-            ]
-        };
-
-        this.registerForm = {
-            controls: [{
-                component: AppText,
-                field: 'login',
-                label: 'user.login',
-                value: '',
-                rules: [Validators.required],
-                messages: {
-                    required: 'user.errors.loginIsRequired'
-                }
-            }, {
-                component: AppPassword,
-                field: 'password',
-                label: 'user.password',
-                value: '',
-                rules: [Validators.required, passwordStrengthValidator()],
-                messages: {
-                    required: 'user.errors.passwordIsRequired',
-                    passwordStrength: 'user.errors.passwordStrengthTooLow'
-                }
-            }, {
-                component: AppPassword,
-                field: 'passwordRepeat',
-                label: 'user.passwordRepeat',
-                value: '',
-                rules: [Validators.required, sameValueValidator('password')],
-                messages: {
-                    required: 'user.errors.passwordRepeatIsRequired',
-                    sameValue: 'user.errors.passwordRepeatMismatch'
-                }
-            }],
-            actions: [{
-                    label: 'user.login',
-                    icon: 'pi pi-angle-left',
-                    onClick: () => this.slide(0)
-                }, {
-                    label: 'user.register',
-                    primary: true,
-                    submit: true,
-                    onClick: (x, y) => this.submitRegister(x, y)
-                },
-            ]
-        };
-
     }
 
     slide(index: number) {
@@ -132,10 +80,11 @@ export class LoginPage implements OnInit {
             left: index*300,
             behavior: "smooth",
           });
+        this.slideVisible = index
     }
 
-    async submitLogin(actionCtx: AppActionContext, form: LoginModel) {
-        actionCtx.inProgress(true);
+    async submitLogin(form: LoginFormModel) {
+        this.isLogging = true; 
         try {
             await this.userService.login({
                 login: form.login,
@@ -145,19 +94,17 @@ export class LoginPage implements OnInit {
             await this.userService.loadAuthenticatedUser();
 
             this.redirectAfterLogin();
-            
-            actionCtx.inProgress(false);
         }
         catch (err) {
             this.messageService.handleError(err)
         }
         finally {
-            actionCtx.inProgress(false);
+            this.isLogging = false;
         }
     }
 
-    async submitRegister(actionCtx: AppActionContext, form: RegisterModel) {
-        actionCtx.inProgress(true);
+    async submitRegister(form: RegisterFormModel) {
+        this.isRegistering = true;
         try {
             await this.userService.register({
                 login: form.login,
@@ -171,17 +118,17 @@ export class LoginPage implements OnInit {
             this.messageService.handleError(err)
         }
         finally {
-            actionCtx.inProgress(false);
+            this.isRegistering = false;
         }
     }
 }
 
-interface LoginModel {
+interface LoginFormModel {
     login: string;
     password: string;
 }
 
-interface RegisterModel {
+interface RegisterFormModel {
     login: string;
     password: string;
     passwordRepeat: string;
