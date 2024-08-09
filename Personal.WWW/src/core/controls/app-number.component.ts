@@ -1,36 +1,32 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { AppBaseControl, AppBaseControlComponent } from './app-base-control.component';
 
 @Component({
     standalone: true,
-    imports: [InputNumberModule, FormsModule, TranslateModule, ReactiveFormsModule, CommonModule],
+    imports: [InputNumberModule, FormsModule, TranslateModule, ReactiveFormsModule, CommonModule, AppBaseControlComponent],
     selector: 'app-number',
-    template: `<p-inputNumber
-        [ngClass]="{ 'ng-invalid': isInvalid(), 'ng-dirty': isInvalid() }" 
-        [ngModel]="fc.value" 
-        (ngModelChange)="update($event)" 
-        [showClear]="true" 
-        mode="decimal"
-        [maxFractionDigits]="2"
-        [placeholder]="label | translate" 
-    />`
+    template: `
+        <app-base-control>
+            <p-inputNumber
+                [ngClass]="{ 'ng-invalid': isInvalid(), 'ng-dirty': isInvalid() }" 
+                [ngModel]="fc?.value" 
+                (ngModelChange)="update($event)" 
+                [showClear]="true" 
+                mode="decimal"
+                [maxFractionDigits]="2"
+                [placeholder]="label | translate" 
+            />
+            <ng-content></ng-content>
+        </app-base-control>
+    `
 })
 
-export class AppNumber {
-    constructor() { }
-
-    @Input() fc!: FormControl;
-    @Input() label!: string;
-
-    isInvalid() {
-        return this.fc.invalid && this.fc.touched;
-    }
-
-    update(val: string): void {
-        this.fc.markAsTouched();
-        this.fc.setValue(val);
+export class AppNumber extends AppBaseControl {
+    constructor() {
+        super()
     }
 }

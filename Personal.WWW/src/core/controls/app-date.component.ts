@@ -1,36 +1,31 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { CalendarModule } from 'primeng/calendar';
+import { AppBaseControl, AppBaseControlComponent } from './app-base-control.component';
 
 @Component({
     standalone: true,
-    imports: [CalendarModule, FormsModule, TranslateModule, ReactiveFormsModule, CommonModule],
+    imports: [CalendarModule, FormsModule, TranslateModule, ReactiveFormsModule, CommonModule, AppBaseControlComponent],
     selector: 'app-date',
-    template: `<p-calendar 
-        [ngClass]="{ 'ng-invalid': isInvalid(), 'ng-dirty': isInvalid() }" 
-        dateFormat="yy-mm-dd" 
-        [ngModel]="fc.value" 
-        (ngModelChange)="update($event)" 
-        [iconDisplay]="'input'" 
-        [showIcon]="true" 
-        [placeholder]="label | translate" 
-    />`
+    template: `
+        <app-base-control>
+            <p-calendar 
+                [ngClass]="{ 'ng-invalid': isInvalid(), 'ng-dirty': isInvalid() }" 
+                dateFormat="yy-mm-dd" 
+                [ngModel]="fc?.value" 
+                (ngModelChange)="update($event)" 
+                [iconDisplay]="'input'" 
+                [showIcon]="true" 
+                [placeholder]="label | translate" 
+            />
+            <ng-content></ng-content>
+        </app-base-control>`
 })
 
-export class AppDate {
-    constructor() { }
-
-    @Input() fc!: FormControl;
-    @Input() label!: string;
-
-    isInvalid() {
-        return this.fc.invalid && this.fc.touched;
-    }
-
-    update(val: string): void {
-        this.fc.markAsTouched();
-        this.fc.setValue(val);
+export class AppDate extends AppBaseControl {
+    constructor() {
+        super()
     }
 }

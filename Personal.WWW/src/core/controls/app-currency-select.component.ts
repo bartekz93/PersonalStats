@@ -1,30 +1,38 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { DropdownModule } from 'primeng/dropdown';
+import { AppBaseControl, AppBaseControlComponent } from './app-base-control.component';
 
 @Component({
     standalone: true,
-    imports: [DropdownModule, FormsModule, TranslateModule, ReactiveFormsModule, CommonModule],
+    imports: [DropdownModule, FormsModule, TranslateModule, ReactiveFormsModule, CommonModule, AppBaseControlComponent],
     selector: 'app-currency-select',
-    template: `<p-dropdown
-        appendTo="body"
-        [ngClass]="{ 'ng-invalid': isInvalid(), 'ng-dirty': isInvalid() }"
-        [options]="currencies" 
-        [ngModel]="fc.value" 
-        (ngModelChange)="update($event)" 
-        [placeholder]="'app.currency' | translate" 
-        optionValue="value" 
-        optionLabel="name" 
-        [filter]="true"
-        filterBy="name"
-        [showClear]="true"
-    />`
+    template: `
+        <app-base-control>
+            <p-dropdown
+                appendTo="body"
+                [ngClass]="{ 'ng-invalid': isInvalid(), 'ng-dirty': isInvalid() }"
+                [options]="currencies" 
+                [ngModel]="fc?.value" 
+                (ngModelChange)="update($event)" 
+                [placeholder]="'app.currency' | translate" 
+                optionValue="value" 
+                optionLabel="name" 
+                [filter]="true"
+                filterBy="name"
+                [showClear]="true"
+            />
+            <ng-content></ng-content>
+        </app-base-control>
+    `
 })
 
-export class AppCurrencySelect {
-    constructor() { }
+export class AppCurrencySelect extends AppBaseControl {
+    constructor() {
+        super()
+    }
 
     currencies = [
         { name: 'AED', value: 'AED' },
@@ -205,16 +213,4 @@ export class AppCurrencySelect {
         { name: 'ZMW', value: 'ZMW' },
         { name: 'ZWL', value: 'ZWL' }
     ]
-
-    @Input() fc!: FormControl;
-    @Input() label!: string;
-
-    isInvalid() {
-        return this.fc.invalid && this.fc.touched;
-    }
-
-    update(val: string): void {
-        this.fc.markAsTouched();
-        this.fc.setValue(val);
-    }
 }

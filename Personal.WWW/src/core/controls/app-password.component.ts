@@ -1,31 +1,22 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit, forwardRef } from '@angular/core';
-import { ControlValueAccessor, FormControl, FormsModule, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { PasswordModule } from 'primeng/password';
+import { AppBaseControl, AppBaseControlComponent } from './app-base-control.component';
 
 @Component({
     standalone: true,
-    imports: [PasswordModule, FormsModule, TranslateModule, ReactiveFormsModule, CommonModule],
+    imports: [PasswordModule, FormsModule, TranslateModule, ReactiveFormsModule, CommonModule, AppBaseControlComponent],
     selector: 'app-password',
-    template: `<p-password [ngClass]="{ 'ng-invalid': isInvalid(), 'ng-dirty': isInvalid() }" [feedback]="false" [placeholder]="label | translate" [ngModel]="value" (ngModelChange)="update($event)" />`
+    template: `
+        <app-base-control>
+            <p-password [ngClass]="{ 'ng-invalid': isInvalid(), 'ng-dirty': isInvalid() }" [feedback]="false" [placeholder]="label | translate" [ngModel]="fc?.value" (ngModelChange)="update($event)" />
+            <ng-content></ng-content>
+        <app-base-control>`
 })
-
-export class AppPassword {
-    constructor() { }
-    
-    value: string = '';
-
-    @Input() fc!: FormControl;
-    @Input() label!: string;
-
-    isInvalid() {
-        return this.fc.invalid && this.fc.touched;
-    }
-
-    update(val: string): void {
-        this.value = val;
-        this.fc.markAsTouched();
-        this.fc.setValue(val);
+export class AppPassword extends AppBaseControl {
+    constructor() {
+        super()
     }
 }
