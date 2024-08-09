@@ -1,12 +1,10 @@
 <p-card>
-    <form (ngSubmit)="search()">
-        <div style="display: flex; gap: 10px">
-            <ng-content></ng-content>
-        </div>
+    <app-form (onSubmit)="search()" [formGroup]="formGroup" [horizontal]="true">
+        <ng-content></ng-content>
 
-        <div style="display: flex; justify-content: flex-end" class="mt-3">
+        <ng-container actions>
             <app-button [flat]="true" [secondary]="true" icon="pi pi-filter-slash" (onClick)="clear()" label="app.clear" class="mr-2" />
             <app-button [submit]="true" [loading]="loading" icon="pi pi-search" label="app.search" class="mr-2" />
-        </div>
-    </form>
+        </ng-container>
+    </app-form>
 </p-card>
