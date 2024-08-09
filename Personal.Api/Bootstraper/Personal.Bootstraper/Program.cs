@@ -60,7 +60,7 @@ namespace Personal.Bootstraper
             app.UseSwagger();
             app.UseSwaggerUI();
 
-            app.UseCors(x => x.WithOrigins("http://localhost:4200", "http://localhost:8080").AllowAnyMethod().AllowAnyHeader());
+            app.UseCors(x => x.WithOrigins("http://localhost:4200", "http://localhost:8080").AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 
             app.MapControllers();
 
