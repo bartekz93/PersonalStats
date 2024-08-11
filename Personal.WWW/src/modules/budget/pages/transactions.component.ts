@@ -3,7 +3,7 @@ import { Transaction, TransactionCriteria, TransactionService } from '../service
 import { Format } from '../../../core/helpers/formatters';
 import { CategorySelect } from '../components/category-select/category-select.component';
 import {TranslateModule} from '@ngx-translate/core';
-import { AppSearchPageBase } from '../../../core/components/app-page-search/app-page-search.component';
+import { AppSearchPageBase }                      from '@core/base/app-search-page.base';
 import { AmountBarColumn } from '../components/amount-bar-column/amount-bar-column.component';
 import { AppNumber } from '../../../core/controls/app-number.component';
 import { AppDate } from '../../../core/controls/app-date.component';
@@ -35,7 +35,7 @@ export class TransactionsPage extends AppSearchPageBase<Transaction> {
 
     constructor(private transactionService: TransactionService) 
     {
-        super()
+        super('TransactionsList')
         // super({
         //     name: 'budget.transactions',
         //     defaultFilter: {
