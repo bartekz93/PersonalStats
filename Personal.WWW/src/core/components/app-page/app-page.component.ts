@@ -16,7 +16,7 @@ export class AppPage implements OnInit {
     constructor() { }
 
     @Input() withBack: boolean = true;
-    @Input() title: string = '';
+    @Input() header: string = '';
     @Input() actions: AppAction[] = [];
 
     ngOnInit(): void {
