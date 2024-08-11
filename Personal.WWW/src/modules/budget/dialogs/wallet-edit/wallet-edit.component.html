@@ -1,0 +1,16 @@
+<app-dialog 
+    code="WalletEditDialog" 
+    title="budget.addWallet" 
+    (open)="open($event)"
+>
+    <app-form (onSubmit)="save($event)" [formGroup]="formGroup" [horizontal]="true">
+        <app-color-select label="" [fc]="control('color')" />
+        <app-text label="budget.name" [fc]="control('name')" />
+        <app-currency-select label="budget.currency" [fc]="control('currency')" />
+
+        <ng-container actions>
+            <app-button [flat]="true" label="app.cancel" (onClick)="close()" />
+            <app-button [submit]="true" label="app.save" [loading]="isSaving" />
+        </ng-container>
+    </app-form>
+</app-dialog>

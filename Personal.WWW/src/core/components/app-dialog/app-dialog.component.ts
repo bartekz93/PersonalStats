@@ -1,22 +1,16 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
 import { AppDialogService } from '../../services/app-dialog.service';
-import { AppForm } from '../../models/app-form';
-import { AppFormComponent } from '../app-form/app-form.component';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     standalone: true,
-    imports: [DialogModule, AppFormComponent, TranslateModule],
+    imports: [DialogModule, TranslateModule],
     selector: 'app-dialog',
-    template: `<p-dialog [header]="title | translate" [modal]="true" [visible]="visible()" (visibleChange)="close()" >
-        @if (form) {
-            <div class="mt-2">
-                <app-form [form]="form" [horizontal]="true"/>
-            </div>
-        }
-        <ng-content></ng-content>
-    </p-dialog>`
+    template: `
+        <p-dialog [draggable]="false" [header]="title | translate" [modal]="true" [visible]="visible()" (visibleChange)="close()" >
+            <ng-content></ng-content>
+        </p-dialog>`
 })
 
 export class AppDialogComponent implements OnInit {
@@ -24,7 +18,6 @@ export class AppDialogComponent implements OnInit {
 
     @Input() title!: string;
     @Input() code!: string;
-    @Input() form?: AppForm;
 
     @Output() open = new EventEmitter<any>();
 
