@@ -16,7 +16,11 @@
     "app.cancel": "Anuluj",
     "app.errors.unknownError": "Wystąpił niespodziewany błąd",
 
+    "app.core.selectIcon": "Wybierz ikonę",
 
+
+    "budget.income": "Przychód",
+    "budget.outcome": "Wydatek",
     "budget.transactions": "Transakcje",
     "budget.name": "Nazwa",
     "budget.currency": "Waluta",

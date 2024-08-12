@@ -1,10 +1,11 @@
+<category-dialog (onSave)="search()" />
 <app-page header="budget.categories">
     <ng-container actions>
         <app-button [flat]="true" label="app.add" icon="pi pi-plus" (click)="showEditDialog()" />
     </ng-container>
     <app-filter-panel (onSearch)="search($event)" (onClear)="clear()" [loading]="loading" [formGroup]="filters">
         <app-text label="budget.name" [fc]="filter('name')" />
-        <app-text label="budget.type" [fc]="filter('type')" />
+        <category-type-select label="budget.type" [fc]="filter('type')" />
     </app-filter-panel>
     <app-list
         [columns]="columns" 
@@ -15,6 +16,12 @@
     >
         <ng-template appTemplate="actions" let-item="item">
             <app-list-edit-column [id]="item.id" [deletingId]="deletingId" (onEdit)="showEditDialog(item)" (onDelete)="showDeleteDialog(item)"></app-list-edit-column>
+        </ng-template>
+        <ng-template appTemplate="type" let-item="item">
+            <app-circle-label [color]="item.type == 'I' ? 'green' : 'red'" [label]="(item.type == 'I' ? 'budget.income' : 'budget.outcome') | translate" [icon]="item.type == 'I' ? 'pi pi-plus' : 'pi pi-minus'" />
+        </ng-template>
+        <ng-template appTemplate="name" let-item="item">
+            <app-circle-label [color]="item.color" [label]="item.name" [icon]="item.icon" />
         </ng-template>
     </app-list>
 

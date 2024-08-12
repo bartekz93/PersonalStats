@@ -33,7 +33,7 @@ export class AppFormComponent implements OnInit {
         return {
             display: 'flex',
             flexDirection: this.horizontal ? 'row' : 'column',
-            alignItems: this.horizontal ? 'center' : 'center',
+            alignItems: this.horizontal ? 'stretch' : 'stretch',
             gap: '10px'
         }
     }

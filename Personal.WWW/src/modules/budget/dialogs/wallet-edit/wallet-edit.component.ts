@@ -12,6 +12,7 @@ import { AppFormComponent } from '@core/components/app-form/app-form.component';
 import { AppError } from '@core/components/app-error/app-error.component';
 import { AppButtonComponent } from '@core/components/app-button/app-button.component';
 import budgetModule from '@budget/budget.module';
+import { EditDialogBase } from '@core/base/app-edit-dialog.base';
 
 @Component({
     standalone: true,
@@ -20,9 +21,16 @@ import budgetModule from '@budget/budget.module';
     templateUrl: `wallet-edit.component.html`,
 })
 
-export class WalletEditDialog {
-    constructor(private appDialogService: AppDialogService, private walletService: WalletService, private messageService: AppMessageService) { 
-        this.formGroup = new FormGroup({
+export class WalletEditDialog extends EditDialogBase<WalletEdit> {
+
+    constructor(appDialogService: AppDialogService, appMessageService: AppMessageService, private walletService: WalletService) { 
+        super(budgetModule.dialogs.WalletEditDialog, appDialogService, appMessageService);
+    }
+
+    @Output() onSave = new EventEmitter();
+
+    override getFormGroup(): FormGroup<any> {
+        return new FormGroup({
             id: new FormControl('', []),
             color: new FormControl('', []),
             name: new FormControl('', [Validators.required]),
@@ -30,17 +38,7 @@ export class WalletEditDialog {
         })
     }
 
-    @Output() onSave = new EventEmitter();
-
-    formGroup!: FormGroup;
-    isSaving = false;
-    isEdit = false;
-
-    control(name: string) {
-        return this.formGroup?.get(name) as FormControl;
-    }
-
-    getDefaultValues() {
+    override getDefaultValues() {
         return {
             id: 0,
             color: '#ff0000',
@@ -49,35 +47,15 @@ export class WalletEditDialog {
         }
     }
 
-    open(data: any) {
-        this.isEdit = !!data;
-        this.formGroup.setValue(data || this.getDefaultValues());
+    override async onEdit(edit: WalletEdit) {
+        await this.walletService.edit(edit);
+        this.appMessageService.success('budget.msg.walletEditSuccess')
+        this.onSave.emit();
     }
 
-    close() {
-        this.appDialogService.close(budgetModule.dialogs.WalletEditDialog)
-    }
-
-    async save(edit: WalletEdit) {
-        this.isSaving = true;
-        try {
-            if (this.isEdit) {
-                await this.walletService.edit(edit);
-                this.messageService.success('budget.msg.walletEditSuccess')
-            }
-            else {
-                await this.walletService.create(edit);
-                this.messageService.success('budget.msg.walletCreateSuccess')
-            }
-            
-            this.close();
-            this.onSave.emit();
-        }
-        catch (err) {
-            this.messageService.handleError(err)
-        }
-        finally {
-            this.isSaving = false;
-        }
+    override async onCreate(edit: WalletEdit) {
+        await this.walletService.create(edit);
+        this.appMessageService.success('budget.msg.walletCreateSuccess')
+        this.onSave.emit();
     }
 }

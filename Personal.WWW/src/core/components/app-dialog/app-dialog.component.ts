@@ -8,7 +8,7 @@ import { TranslateModule } from '@ngx-translate/core';
     imports: [DialogModule, TranslateModule],
     selector: 'app-dialog',
     template: `
-        <p-dialog [draggable]="false" [header]="header | translate" [modal]="true" [visible]="visible()" (visibleChange)="close()" >
+        <p-dialog [style]="style" [draggable]="false" [header]="header | translate" [modal]="true" [visible]="visible()" (visibleChange)="close()" >
             <ng-content></ng-content>
         </p-dialog>`
 })
@@ -18,6 +18,9 @@ export class AppDialogComponent implements OnInit {
 
     @Input() header!: string;
     @Input() code!: string;
+    @Input() width!: string;
+    @Input() height!: string;
+    @Input() style!: any;
 
     @Output() open = new EventEmitter<any>();
 

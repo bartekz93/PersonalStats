@@ -9,19 +9,21 @@ import { AppText }                                from '@core/controls/app-text.
 import { AppDialogService }                       from '@core/services/app-dialog.service';
 import { AppError } from '@core/components/app-error/app-error.component';
 import { CommonModule } from '@angular/common';
-import { WalletColumn } from '@budget/components/wallet-column/wallet-column.component';
 import { AppListEditColumn } from '@core/components/app-list/app-list-edit-column.component';
 import { AppTemplateDirective } from '@core/directives/app-template.directive';
 import { AppConfirmService } from '@core/services/app-confirm.service';
 import { AppMessageService } from '@core/services/app-message.service';
 import { CategorySearchItem, CategoryService } from '@budget/services/category.service';
 import budgetModule from '@budget/budget.module';
+import { CategoryEditDialog } from '@budget/dialogs/category-edit/category-edit.component';
+import { AppCircleLabelComponent } from '@core/components/app-circle-label/app-circle-label.component';
+import { CategoryTypeSelectComponent } from '@budget/controls/category-type-select.component';
 
 @Component({
     selector: 'categories-page',
     templateUrl: 'categories.component.html',
     standalone: true,
-    imports: [TranslateModule, AppPage, AppButtonComponent, AppFilterPanel, AppText, AppList, AppError, CommonModule, WalletColumn, AppTemplateDirective, AppListEditColumn],
+    imports: [TranslateModule, AppPage, AppButtonComponent, AppFilterPanel, AppText, AppList, AppError, CommonModule, AppTemplateDirective, AppListEditColumn, CategoryEditDialog, AppCircleLabelComponent, CategoryTypeSelectComponent],
     providers: []
 })
 
@@ -42,7 +44,7 @@ export class CategoriesPage extends AppSearchPageBase<CategorySearchItem> {
 
     override getColumns(): AppListColumnDefinition<CategorySearchItem>[] {
         return [
-            { name: 'type', label: 'budget.type', value: x => x.type },
+            { name: 'type', label: 'budget.type', width: '200px' },
             { name: 'name', label: 'budget.name' },
             { name: 'actions', label: '', width: '100px' },
             

@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
     imports: [CommonModule],
     selector: 'app-circle-label',
     template: `
-        <div style="display: flex; gap: 10px; align-items: center">
+        <div [ngStyle]="getBodyStyle()">
             <div [ngStyle]="getItemStyle()">
                 @if (hasIcon()) {
                     <i [ngStyle]="getIconStyle()" [class]="icon"></i>
@@ -25,6 +25,7 @@ export class AppCircleLabelComponent implements OnInit {
     @Input() color = '';
     @Input() label = '';
     @Input() icon = '';
+    @Input() clickable = false;
     @Input() iconColor = 'white';
     @Input() size = 2;
 
@@ -32,6 +33,15 @@ export class AppCircleLabelComponent implements OnInit {
 
     hasIcon() {
         return this.icon !== '';
+    }
+
+    getBodyStyle() {
+        return {
+            display: 'flex',
+            gap: '10px', 
+            alignItems: 'center',
+            cursor: this.clickable ? 'pointer' : 'normal'
+        }
     }
 
     getIconStyle() {

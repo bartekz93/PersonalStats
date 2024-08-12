@@ -1,0 +1,17 @@
+<app-dialog 
+    [style]="{ minHeight: '70vh', minWidth: '80vw' }"
+    header="app.core.selectIcon"
+    [code]="name" 
+    (open)="open()"
+>
+    <div style="display: flex; flex-direction: column; max-height: calc(70vh - 134px); overflow: hidden">
+            <div style="padding: 10px; display: flex; flex-direction: column">
+                <input type="text" [(ngModel)]="filter" pInputText />
+            </div>
+            <div style="display: flex; flex: 1; overflow: auto; flex-wrap: wrap; ">
+                @for (i of getIcons(); track i) {
+                    <i [class]="i" (click)="select(i)"></i>
+                }
+            </div>
+    </div>
+</app-dialog>

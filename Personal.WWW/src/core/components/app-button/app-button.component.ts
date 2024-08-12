@@ -10,7 +10,7 @@ import { Tooltip, TooltipModule } from 'primeng/tooltip';
     template: `
         <p-button 
             [style]="round ? { width: '40px', height: '40px' } : {}"
-            (onClick)="click()" 
+            (onClick)="click($event)" 
             [type]="submit ? 'submit' : 'button'" 
             [loading]="loading" 
             [icon]="icon" 
@@ -41,7 +41,7 @@ export class AppButtonComponent implements OnInit {
 
     ngOnInit() { }
 
-    click() {
-        this.onClick.emit()
+    click(ev: any) {
+        this.onClick.emit(ev)
     }
 }

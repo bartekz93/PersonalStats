@@ -1,0 +1,19 @@
+<app-dialog 
+    [code]="name" 
+    [header]="isEdit ? 'budget.editCategory' : 'budget.addCategory'" 
+    (open)="open($event)"
+>
+    <app-form (onSubmit)="save($event)" [formGroup]="formGroup" [horizontal]="false">
+        <div style="display: flex; justify-content: space-around; width: 100%">
+            <app-color-select label="" [fc]="control('color')" />
+            <app-icon-select label="" [fc]="control('icon')" [color]="control('color').value"/>
+        </div>
+        <category-type-select label="budget.type" [fc]="control('type')" />
+        <app-text label="budget.name" [fc]="control('name')" />
+
+        <ng-container actions>
+            <app-button [flat]="true" label="app.cancel" (onClick)="close()" />
+            <app-button [submit]="true" label="app.save" [loading]="isSaving" />
+        </ng-container>
+    </app-form>
+</app-dialog>

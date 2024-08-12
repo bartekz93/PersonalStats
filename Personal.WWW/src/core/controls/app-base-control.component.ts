@@ -37,7 +37,7 @@ export class AppBaseControl {
         .app-base-control {
             display: flex;
             flex-direction: column;
-            align-items: center
+            align-items: stretch
         }
     `,
     template: `

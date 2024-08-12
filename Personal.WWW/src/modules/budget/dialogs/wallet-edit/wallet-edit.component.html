@@ -1,5 +1,5 @@
 <app-dialog 
-    code="WalletEditDialog" 
+    [code]="name" 
     [header]="isEdit ? 'budget.editWallet' : 'budget.addWallet'" 
     (open)="open($event)"
 >
