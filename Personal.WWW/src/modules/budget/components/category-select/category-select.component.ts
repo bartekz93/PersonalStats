@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
-import { Category, CategoryService } from '../../services/category.service';
+import { CategoryService } from '../../services/category.service';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -25,7 +25,7 @@ export class CategorySelect implements OnInit {
 
     ngOnInit() { 
         this.categoriesLoading = true;
-        this.categoryService.getList().then(data => {
+        this.categoryService.search({}).then(data => {
             this.categories = data.rows;
             this.categoriesLoading = false;
         })

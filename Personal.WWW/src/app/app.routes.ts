@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import BudgetRoutes from '../modules/budget/routes'
+import BudgetModule from '../modules/budget/budget.module'
 import UserRoutes from '../modules/user/routes'
 
 export const routes: Routes = [
-    ...BudgetRoutes,
+    ...BudgetModule.routes,
     ...UserRoutes
 
 ];

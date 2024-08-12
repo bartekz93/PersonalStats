@@ -11,6 +11,7 @@ import { AppMessageService } from '@core/services/app-message.service';
 import { AppFormComponent } from '@core/components/app-form/app-form.component';
 import { AppError } from '@core/components/app-error/app-error.component';
 import { AppButtonComponent } from '@core/components/app-button/app-button.component';
+import budgetModule from '@budget/budget.module';
 
 @Component({
     standalone: true,
@@ -54,7 +55,7 @@ export class WalletEditDialog {
     }
 
     close() {
-        this.appDialogService.close('WalletEditDialog')
+        this.appDialogService.close(budgetModule.dialogs.WalletEditDialog)
     }
 
     async save(edit: WalletEdit) {
