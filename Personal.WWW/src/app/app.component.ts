@@ -8,11 +8,12 @@ import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { UserAvatarComponent } from '../modules/user/components/user-avatar/user-avatar.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, AppMenuComponent, ToastModule, UserAvatarComponent],
+  imports: [RouterOutlet, AppMenuComponent, ToastModule, ConfirmDialogModule, UserAvatarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
