@@ -1,7 +1,7 @@
-﻿using Personal.Budget.Api.Dto;
+﻿using Personal.Budget.Api.Dto.Wallet;
 using Personal.Shared.Dtos;
 
-namespace Personal.Budget.Api.Services
+namespace Personal.Budget.Api.Services.Wallet
 {
     public interface IWalletService
     {

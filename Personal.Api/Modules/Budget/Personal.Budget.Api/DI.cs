@@ -1,4 +1,4 @@
-﻿using Personal.Budget.Api.Services;
+﻿using Personal.Budget.Api.Services.Wallet;
 using Personal.Budget.Data;
 
 namespace Personal.Budget

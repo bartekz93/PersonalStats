@@ -1,4 +1,4 @@
-﻿namespace Personal.Budget.Api.Dto
+﻿namespace Personal.Budget.Api.Dto.Wallet
 {
     public class WalletEdit
     {

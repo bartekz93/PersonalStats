@@ -1,6 +1,6 @@
 ﻿using Personal.Shared.Dtos;
 
-namespace Personal.Budget.Api.Dto
+namespace Personal.Budget.Api.Dto.Wallet
 {
     public class WalletSearchItem : SearchItem
     {

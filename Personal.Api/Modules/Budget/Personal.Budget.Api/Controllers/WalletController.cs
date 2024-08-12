@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Personal.Budget.Api.Dto;
-using Personal.Budget.Api.Services;
+using Personal.Budget.Api.Dto.Wallet;
+using Personal.Budget.Api.Services.Wallet;
 using Personal.Shared.Controllers;
 
 namespace Personal.Budget.Api.Controllers

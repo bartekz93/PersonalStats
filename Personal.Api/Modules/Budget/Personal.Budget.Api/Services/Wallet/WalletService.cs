@@ -1,12 +1,10 @@
-﻿using Personal.Budget.Api.Dto;
-using Personal.Budget.Data;
+﻿using Personal.Budget.Data;
 using Personal.Shared.Dtos;
 using Dapper;
 using Personal.Budget.Api.Resources;
-using Personal.Budget.Data.Models;
-using Microsoft.EntityFrameworkCore;
+using Personal.Budget.Api.Dto.Wallet;
 
-namespace Personal.Budget.Api.Services
+namespace Personal.Budget.Api.Services.Wallet
 {
     public class WalletService : IWalletService
     {
@@ -19,7 +17,7 @@ namespace Personal.Budget.Api.Services
 
         public async Task<int> Create(WalletEdit dto, int userId)
         {
-            var wallet = new Wallet()
+            var wallet = new Data.Models.Wallet()
             {
                 Color = dto.Color,
                 Currency = dto.Currency,
