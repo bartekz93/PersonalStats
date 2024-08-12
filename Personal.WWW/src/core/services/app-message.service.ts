@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { MessageService } from "primeng/api";
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { Observable, forkJoin, from, map, of } from "rxjs";
+import { Format } from "@core/helpers/formatters";
 
 @Injectable({providedIn: 'root'})
 export class AppMessageService {
@@ -9,9 +10,6 @@ export class AppMessageService {
     successLabel: string = 'app.success';
 
     constructor(private messageService: MessageService, private translateService: TranslateService) {
-        this.translateService.get(this.errorLabel).subscribe(x => {
-
-        });
     }
 
     handleError(err: any) {
@@ -26,20 +24,20 @@ export class AppMessageService {
         }
     }
 
-    error(msg: string) {
-        this.show('error', msg);
+    error(msg: string, params?: any) {
+        this.show('error', msg, params);
     }
 
-    success(msg: string) {
-        this.show('success', msg);
+    success(msg: string, params?: any) {
+        this.show('success', msg, params);
     }
 
-    show(type: string, msg: string) {
+    show(type: string, msg: string, params: any) {
         let t1 = this.translateService.get(`app.${type}`);
         let t2 = this.translateService.get(msg);
 
         forkJoin([t1, t2]).subscribe(r => {
-            this.messageService.add({ severity: type, summary: r[0], detail: r[1] });
+            this.messageService.add({ severity: type, summary: r[0], detail: Format.string(r[1], params) });
         })
     }
 }
