@@ -41,13 +41,14 @@
                     @if (col.component) {
                         <app-dynamic [component]="col.component" [value]="item" />
                     }
+                    @else if (col.value) {
+                        {{ col.value(item) }}
+                    }
+                    @else if (hasTemplate(col.name)) {
+                        <ng-container *ngTemplateOutlet="getTemplate(col.name); context: {item: item }" />
+                    }
                     @else {
-                        @if (col.value) {
-                            {{ col.value(item) }}
-                        } 
-                        @else {
-                            No Column def
-                        }
+                        <span>No template</span>
                     }
                     </td>
                 }

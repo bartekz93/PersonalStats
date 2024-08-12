@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ContentChild, ContentChildren, EventEmitter, Input, OnInit, Output, QueryList, TemplateRef, ViewChild } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { AppDynamicComponent } from '../app-dynamic/app-dynamic.component';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { SearchCriteria, SearchResult } from '../../services/base.service';
+import { AppTemplateDirective } from '@core/directives/app-template.directive';
 
 export interface AppListColumnDefinition<T> {
     name: string;
@@ -18,7 +19,7 @@ export interface AppListColumnDefinition<T> {
 
 @Component({
     standalone: true,
-    imports: [ TableModule, AppDynamicComponent, CommonModule, TranslateModule, ProgressBarModule ],
+    imports: [ TableModule, AppDynamicComponent, CommonModule, TranslateModule, ProgressBarModule, AppTemplateDirective ],
     selector: 'app-list',
     templateUrl: 'app-list.component.html',
     styleUrl: 'app-list.component.scss'
@@ -26,6 +27,8 @@ export interface AppListColumnDefinition<T> {
 
 export class AppList<T> implements OnInit {
     constructor() { }
+
+    @ContentChildren(AppTemplateDirective) templates?: QueryList<AppTemplateDirective>;
     
     @Input() columns!: AppListColumnDefinition<T>[];
     @Input() result!: SearchResult<T>;
@@ -35,7 +38,16 @@ export class AppList<T> implements OnInit {
 
     @Output() onSearch: EventEmitter<any> = new EventEmitter();
 
-    ngOnInit() { 
+    ngOnInit() {
+
+    }
+
+    hasTemplate(name: string) {
+        return this.templates?.find(x => x.name == name) !== undefined;
+    }
+
+    getTemplate(name: string) {
+        return this.templates?.find(x => x.name == name)?.template as TemplateRef<any>;
     }
 
     getCellStyle(col: AppListColumnDefinition<T>, item: T) {
