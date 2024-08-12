@@ -38,4 +38,12 @@ export class BaseService {
     protected post<T>(url: string, obj: any): Promise<T> {
         return firstValueFrom(this.httpClient.post<T>(`${this.apiUrl}\\${url}`, obj, { withCredentials: true }));
     }
+
+    protected put<T>(url: string, obj: any): Promise<T> {
+        return firstValueFrom(this.httpClient.put<T>(`${this.apiUrl}\\${url}`, obj, { withCredentials: true }));
+    }
+
+    protected delete<T>(url: string): Promise<T> {
+        return firstValueFrom(this.httpClient.delete<T>(`${this.apiUrl}\\${url}`, { withCredentials: true }));
+    }
 }
