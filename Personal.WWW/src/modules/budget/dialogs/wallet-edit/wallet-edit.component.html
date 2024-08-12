@@ -1,6 +1,6 @@
 <app-dialog 
     code="WalletEditDialog" 
-    title="budget.addWallet" 
+    [header]="isEdit ? 'budget.editWallet' : 'budget.addWallet'" 
     (open)="open($event)"
 >
     <app-form (onSubmit)="save($event)" [formGroup]="formGroup" [horizontal]="true">

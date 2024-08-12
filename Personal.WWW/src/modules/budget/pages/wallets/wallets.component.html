@@ -13,5 +13,10 @@
         [result]="result" 
         [loading]="loading" 
         (onSearch)="search($event)" 
-    />
+    >
+        <ng-template appTemplate="actions" let-item="item">
+            <app-list-edit-column [id]="item.id" [deletingId]="deletingId" (onEdit)="showEditDialog(item)" (onDelete)="showDeleteDialog(item)"></app-list-edit-column>
+        </ng-template>
+    </app-list>
+
 </app-page>

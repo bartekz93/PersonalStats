@@ -4,6 +4,7 @@ using Personal.Shared.Dtos;
 using Dapper;
 using Personal.Budget.Api.Resources;
 using Personal.Budget.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Personal.Budget.Api.Services
 {
@@ -34,9 +35,24 @@ namespace Personal.Budget.Api.Services
             return wallet.Id;
         }
 
+        public async Task Delete(int id, int userId)
+        {
+            var wallet = budgetContext.Wallets.Where(x => x.Id == id).FirstOrDefault();
+            wallet.IsActive = false;
+            wallet.ModifyDate = DateTime.Now;
+            wallet.ModifyUserId = userId;
+            await budgetContext.SaveChangesAsync();
+        }
+
         public async Task Edit(WalletEdit dto, int userId)
         {
-            throw new NotImplementedException();
+            var wallet = budgetContext.Wallets.Where(x => x.Id == dto.Id).FirstOrDefault();
+            wallet.Color = dto.Color;
+            wallet.Name = dto.Name;
+            wallet.Currency = dto.Currency;
+            wallet.ModifyDate = DateTime.Now;
+            wallet.ModifyUserId = userId;
+            await budgetContext.SaveChangesAsync();
         }
 
         public async Task<SearchResult<WalletSearchItem>> Search(WalletSearchCriteria criteria, int userId)

@@ -25,6 +25,20 @@ namespace Personal.Budget.Api.Controllers
             return Ok(result);
         }
 
+        [HttpPut]
+        public async Task<IActionResult> Edit(WalletEdit dto)
+        {
+            await walletService.Edit(dto, AuthorizedUser.Id);
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await walletService.Delete(id, AuthorizedUser.Id);
+            return Ok();
+        }
+
         [HttpGet]
         public async Task<IActionResult> Search([FromQuery]WalletSearchCriteria criteria)
         {

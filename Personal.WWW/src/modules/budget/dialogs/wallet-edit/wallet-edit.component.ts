@@ -22,6 +22,7 @@ import { AppButtonComponent } from '@core/components/app-button/app-button.compo
 export class WalletEditDialog {
     constructor(private appDialogService: AppDialogService, private walletService: WalletService, private messageService: AppMessageService) { 
         this.formGroup = new FormGroup({
+            id: new FormControl('', []),
             color: new FormControl('', []),
             name: new FormControl('', [Validators.required]),
             currency: new FormControl('', [Validators.required]),
@@ -32,6 +33,7 @@ export class WalletEditDialog {
 
     formGroup!: FormGroup;
     isSaving = false;
+    isEdit = false;
 
     control(name: string) {
         return this.formGroup?.get(name) as FormControl;
@@ -39,6 +41,7 @@ export class WalletEditDialog {
 
     getDefaultValues() {
         return {
+            id: 0,
             color: '#ff0000',
             name: '',
             currency: ''
@@ -46,11 +49,8 @@ export class WalletEditDialog {
     }
 
     open(data: any) {
-        this.formGroup.setValue(
-            Object.keys(data).length == 0 
-                ? this.getDefaultValues() 
-                : data
-        );
+        this.isEdit = !!data;
+        this.formGroup.setValue(data || this.getDefaultValues());
     }
 
     close() {
@@ -60,9 +60,15 @@ export class WalletEditDialog {
     async save(edit: WalletEdit) {
         this.isSaving = true;
         try {
-            await this.walletService.create(edit);
-
-            this.messageService.success('budget.msg.walletCreateSuccess')
+            if (this.isEdit) {
+                await this.walletService.edit(edit);
+                this.messageService.success('budget.msg.walletEditSuccess')
+            }
+            else {
+                await this.walletService.create(edit);
+                this.messageService.success('budget.msg.walletCreateSuccess')
+            }
+            
             this.close();
             this.onSave.emit();
         }

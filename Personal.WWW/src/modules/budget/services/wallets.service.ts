@@ -22,11 +22,20 @@ export interface WalletEdit {
 @Injectable({providedIn: 'root'})
 export class WalletService extends BaseService {
 
-    search(criteria: WalletSearchCriteria): Promise<SearchResult<WalletSearchItem>> {
+    async search(criteria: WalletSearchCriteria): Promise<SearchResult<WalletSearchItem>> {
         return this.get("budget/wallets", criteria);
     }
 
-    create(edit: WalletEdit) {
+    async create(edit: WalletEdit) {
         return this.post("budget/wallets", edit);
+    }
+
+    async edit(edit: WalletEdit) {
+        console.log('edit')
+        return this.put("budget/wallets", edit);
+    }
+
+    async remove(id: number) {
+        return this.delete(`budget/wallets/${id}`);
     }
 }
