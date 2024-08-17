@@ -23,6 +23,6 @@ WHERE
 	AND C.[User_Id] = @User_Id
 	AND (@Type IS NULL OR C.[Type] = @Type)
 	AND (@Name IS NULL OR C.[Name] LIKE @NamePat)
-ORDER BY Id ASC
+ORDER BY [Name] ASC
 OFFSET @Offset ROWS
 FETCH NEXT @Rows ROWS ONLY

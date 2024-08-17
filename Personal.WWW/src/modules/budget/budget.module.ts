@@ -1,5 +1,5 @@
 import { Routes } from "@angular/router";
-import { TransactionsPage } from "./pages/transactions.component";
+import { TransactionsPage } from "./pages/transactions/transactions.component";
 import { AuthGuard } from "../../core/guards/auth.guard";
 import { WalletsPage } from "./pages/wallets/wallets.component";
 import { CategoriesPage } from "./pages/categories/categories.component";
@@ -15,9 +15,11 @@ export default {
     dialogs: {
         WalletEditDialog: 'WalletEditDialog',
         CategoryEditDialog: 'WalletEditDialog',
+        TransactionEditDialog: 'TransactionEditDialog'
     },
     lists: {
         WalletsList: 'WalletsList',
-        CategoriesList: 'CategoriesList'
+        CategoriesList: 'CategoriesList',
+        TransactionsList: 'TransactionsList',
     }
 }

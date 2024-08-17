@@ -17,9 +17,6 @@
         <ng-template appTemplate="actions" let-item="item">
             <app-list-edit-column [id]="item.id" [deletingId]="deletingId" (onEdit)="showEditDialog(item)" (onDelete)="showDeleteDialog(item)"></app-list-edit-column>
         </ng-template>
-        <ng-template appTemplate="type" let-item="item">
-            <app-circle-label [color]="item.type == 'I' ? 'green' : 'red'" [label]="(item.type == 'I' ? 'budget.income' : 'budget.outcome') | translate" [icon]="item.type == 'I' ? 'pi pi-plus' : 'pi pi-minus'" />
-        </ng-template>
         <ng-template appTemplate="name" let-item="item">
             <app-circle-label [color]="item.color" [label]="item.name" [icon]="item.icon" />
         </ng-template>

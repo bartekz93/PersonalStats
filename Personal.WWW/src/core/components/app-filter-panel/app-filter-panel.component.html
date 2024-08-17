@@ -2,7 +2,10 @@
     <app-form (onSubmit)="search()" [formGroup]="formGroup" [horizontal]="true">
         <ng-content></ng-content>
 
-        <ng-container actions>
+        <ng-container actionsLeft>
+            <ng-content select="[actions]"></ng-content>
+        </ng-container>
+        <ng-container actionsRight>
             <app-button [flat]="true" [secondary]="true" icon="pi pi-filter-slash" (onClick)="clear()" label="app.clear" class="mr-2" />
             <app-button [submit]="true" [loading]="loading" icon="pi pi-search" label="app.search" class="mr-2" />
         </ng-container>

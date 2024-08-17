@@ -11,7 +11,7 @@ import { AppBaseControl, AppBaseControlComponent } from './app-base-control.comp
     selector: 'app-text',
     template: `
         <app-base-control>
-            <input [ngClass]="{ 'ng-invalid': isInvalid(), 'ng-dirty': isInvalid() }" type="text" [ngModel]="fc?.value" (ngModelChange)="update($event)" pInputText [placeholder]="label | translate" />
+        <input [style]="{width: '100%'}" [ngClass]="{ 'ng-invalid': isInvalid(), 'ng-dirty': isInvalid() }" type="text" [ngModel]="fc?.value" (ngModelChange)="update($event)" pInputText [placeholder]="label | translate" />
             <ng-content></ng-content>
         <app-base-control>`
 })

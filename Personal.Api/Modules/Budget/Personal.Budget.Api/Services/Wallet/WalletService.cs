@@ -62,7 +62,7 @@ namespace Personal.Budget.Api.Services.Wallet
                 p.Add("Name", criteria.Name);
                 p.Add("Currency", criteria.Currency);
                 p.Add("Offset", criteria.Offset);
-                p.Add("Rows", criteria.Rows);
+                p.Add("Rows", criteria.Rows ?? int.MaxValue);
 
                 var items = await connection.QueryAsync<WalletSearchItem>(Sql.Wallet_Search, p);
                 return new SearchResult<WalletSearchItem>(items);

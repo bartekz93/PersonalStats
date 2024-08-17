@@ -56,6 +56,7 @@ export abstract class AppSearchPageBase<T> {
             controls[key] = new FormControl(defaults[key]);
         }
         this.filters = new FormGroup(controls);
+        console.log(this.filters);
     }
 
     private storeFilters() {

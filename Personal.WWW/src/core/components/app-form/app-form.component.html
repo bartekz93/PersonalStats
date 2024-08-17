@@ -4,7 +4,9 @@
             <ng-content></ng-content>
         </div>
         <div class="mt-4" [style]="getActionsStyle()">
-            <ng-content select="[actions]"></ng-content>
+            <div><ng-content select="[actionsLeft]"></ng-content></div>
+            <div><ng-content select="[actions]"></ng-content></div>
+            <div><ng-content select="[actionsRight]"></ng-content></div>
         </div>
     </fieldset>
 </form>

@@ -34,6 +34,7 @@ export class AppFormComponent implements OnInit {
             display: 'flex',
             flexDirection: this.horizontal ? 'row' : 'column',
             alignItems: this.horizontal ? 'stretch' : 'stretch',
+            flexWrap: 'wrap',
             gap: '10px'
         }
     }
@@ -48,7 +49,7 @@ export class AppFormComponent implements OnInit {
             display: 'flex',
             flexDirecton: 'row',
             gap: '10px',
-            justifyContent: this.horizontal ? 'flex-end' : 'center'
+            justifyContent: 'space-between'
         }
     }
 

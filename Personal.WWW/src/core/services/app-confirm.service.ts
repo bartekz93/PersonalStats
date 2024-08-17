@@ -14,7 +14,7 @@ export class AppConfirmService {
     constructor(private confirmService: ConfirmationService, private translateService: TranslateService) {
     }
 
-    show(msg: string, params: any) {
+    show(msg: string, params?: any) {
         let t1 = this.translateService.get(this.confirmLabel);
         let t2 = this.translateService.get(this.yesLabel);
         let t3 = this.translateService.get(this.noLabel);

@@ -53,8 +53,8 @@ export class AppCircleLabelComponent implements OnInit {
 
     getItemStyle() {
         return {
-            width: `${this.size*this.circleScale}px`,
-            height: `${this.size*this.circleScale}px`,
+            minWidth: `${this.size*this.circleScale}px`,
+            minHeight: `${this.size*this.circleScale}px`,
             fontSize: `${this.size*this.circleScale}px`,
             backgroundColor: this.color,
             borderRadius: '50%',

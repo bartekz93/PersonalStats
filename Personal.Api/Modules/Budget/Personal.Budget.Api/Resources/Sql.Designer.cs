@@ -63,7 +63,7 @@ namespace Personal.Budget.Api.Resources {
         /// <summary>
         ///   Looks up a localized string similar to --DECLARE @User_Id INT = 1
         ///--DECLARE @Name NVARCHAR(100) = NULL
-        ///--DECLARE @Currency CHAR(3) = NULL
+        ///--DECLARE @Type CHAR(1) = NULL
         ///--DECLARE @Offset INT = 0
         ///--DECLARE @Rows INT = 10
         ///--DECLARE @SortBy NVARCHAR(100) = NULL
@@ -73,21 +73,51 @@ namespace Personal.Budget.Api.Resources {
         ///DECLARE @NamePat NVARCHAR(100) = CONCAT(&apos;%&apos;, @Name, &apos;%&apos;)
         ///
         ///SELECT
-        ///	W.Id,
-        ///	W.[Name],
-        ///	W.Color,
-        ///	W.Currency,
+        ///	C.Id,
+        ///	C.[Type],
+        ///	C.[Name],
+        ///	C.Color,
+        ///	C.Icon,
         ///	COUNT(*) OVER() AS TotalRows
         ///FROM 
-        ///	[budget].[Wallet] AS W (NOLOCK)
+        ///	[budget].[Category] AS C (NOLOCK)
         ///WHERE
-        ///	W.IsActive = 1
-        ///	AND W.[User_Id] = @User_Id
-        ///	AND (@Currency IS NULL OR W.Currency = @C [rest of string was truncated]&quot;;.
+        ///	C.IsActive = 1
+        ///	AND C.[User_Id] = @User_Id
+        ///	AND (@Type IS NULL OR C.[Type] = @T [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Category_Search {
             get {
                 return ResourceManager.GetString("Category_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to --DECLARE @User_Id INT
+        ///--DECLARE @Note NVARCHAR(500)
+        ///--DECLARE @AmountMin DECIMAL(16, 2)
+        ///--DECLARE @AmountMax DECIMAL(16, 2)
+        ///--DECLARE @DateFrom DATE
+        ///--DECLARE @DateTo DATE
+        ///--DECLARE @CategoryIds NVARCHAR(MAX)
+        ///--DECLARE @WalletIds NVARCHAR(MAX)
+        ///--DECLARE @Offset INT = 0
+        ///--DECLARE @Rows INT = 10
+        ///--DECLARE @SortBy NVARCHAR(100) = NULL
+        ///--DECLARE @SortOrder INT = NULL
+        ///
+        ///DECLARE @NotePat NVARCHAR(100) = CONCAT(&apos;%&apos;, @Note, &apos;%&apos;)
+        ///
+        ///SELECT
+        ///	T.Id,
+        ///	T.[Date],
+        ///	T.[Amount],
+        ///	T.[Note],
+        ///	C.Id AS Category [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Transaction_Search {
+            get {
+                return ResourceManager.GetString("Transaction_Search", resourceCulture);
             }
         }
         

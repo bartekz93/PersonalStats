@@ -1,4 +1,5 @@
 ﻿using Personal.Budget.Api.Services.Category;
+using Personal.Budget.Api.Services.Transaction;
 using Personal.Budget.Api.Services.Wallet;
 using Personal.Budget.Data;
 
@@ -10,6 +11,7 @@ namespace Personal.Budget
         {
             services.AddScoped<IWalletService, WalletService>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ITransactionService, TransactionService>();
             services.AddBudgetData();
         }
     }

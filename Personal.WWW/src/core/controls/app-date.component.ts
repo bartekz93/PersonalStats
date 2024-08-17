@@ -9,13 +9,19 @@ import { AppBaseControl, AppBaseControlComponent } from './app-base-control.comp
     standalone: true,
     imports: [CalendarModule, FormsModule, TranslateModule, ReactiveFormsModule, CommonModule, AppBaseControlComponent],
     selector: 'app-date',
+    styles: `
+        :host ::ng-deep input {
+            width: 100%
+        }
+    `,
     template: `
         <app-base-control>
             <p-calendar 
+                [style]="{width: '100%'}"
                 [ngClass]="{ 'ng-invalid': isInvalid(), 'ng-dirty': isInvalid() }" 
                 dateFormat="yy-mm-dd" 
                 [ngModel]="fc?.value" 
-                (ngModelChange)="update($event)" 
+                (ngModelChange)="update(format($event))" 
                 [iconDisplay]="'input'" 
                 [showIcon]="true" 
                 [placeholder]="label | translate" 
@@ -27,5 +33,10 @@ import { AppBaseControl, AppBaseControlComponent } from './app-base-control.comp
 export class AppDate extends AppBaseControl {
     constructor() {
         super()
+    }
+
+    format(date: Date) {
+        console.log(date, date.toISOString().substring(0, 10));
+        return date.toISOString().substring(0, 10);
     }
 }

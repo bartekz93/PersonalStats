@@ -44,7 +44,6 @@ export class CategoriesPage extends AppSearchPageBase<CategorySearchItem> {
 
     override getColumns(): AppListColumnDefinition<CategorySearchItem>[] {
         return [
-            { name: 'type', label: 'budget.type', width: '200px' },
             { name: 'name', label: 'budget.name' },
             { name: 'actions', label: '', width: '100px' },
             

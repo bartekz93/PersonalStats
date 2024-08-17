@@ -1,0 +1,52 @@
+<app-page header="budget.transactions">
+    <ng-container actions>
+        <app-button [flat]="true" label="app.add" icon="pi pi-plus" (click)="showEditDialog()" />
+    </ng-container>
+    <app-filter-panel (onSearch)="search($event)" (onClear)="clear()" [loading]="loading" [formGroup]="filters">
+        <div class="grid w-full">
+            <div class="col-3">
+                <wallet-multi-select label="budget.wallet" [fc]="filter('walletIds')" />
+            </div>
+            <div class="col-2">
+                <app-date label="budget.dateFrom" [fc]="filter('dateFrom')" />
+            </div>
+            <div class="col-2">
+                <app-date label="budget.dateTo" [fc]="filter('dateTo')" />
+            </div>
+            <div class="col-2">
+                <app-number label="budget.amountMin" [fc]="filter('amountMin')" />
+            </div>
+            <div class="col-2">
+                <app-number label="budget.amountMax" [fc]="filter('amountMax')" />
+            </div>
+            <div class="col-3">
+                <category-multi-select label="budget.category" [fc]="filter('categoryIds')" />
+            </div>
+            
+            <div class="col-6">
+                <app-text label="budget.description" [fc]="filter('description')" />
+            </div>
+        </div>
+        <ng-container actions>
+            ssdfsd
+        </ng-container>
+    </app-filter-panel>
+    <app-list
+        [columns]="columns" 
+        [criteria]="criteria" 
+        [result]="result" 
+        [loading]="loading"
+        (onSearch)="search($event)" 
+    >
+        <ng-template appTemplate="actions" let-item="item">
+            <app-list-edit-column [id]="item.id" [deletingId]="deletingId" (onEdit)="showEditDialog(item)" (onDelete)="showDeleteDialog(item)"></app-list-edit-column>
+        </ng-template>
+        <ng-template appTemplate="walletName" let-item="item">
+            <app-circle-label [color]="item.walletColor" icon="pi pi-wallet" [label]="item.walletName" />
+        </ng-template>
+        <ng-template appTemplate="categoryName" let-item="item">
+            <app-circle-label [color]="item.categoryColor" [icon]="item.categoryIcon" [label]="item.categoryName" />
+        </ng-template>
+    </app-list>
+
+</app-page>

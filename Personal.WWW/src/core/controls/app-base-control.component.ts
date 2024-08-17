@@ -24,6 +24,7 @@ export class AppBaseControl {
     }
 
     update(val: string): void {
+        console.log(val);
         this.fc?.markAsTouched();
         this.fc?.setValue(val);
     }
@@ -37,7 +38,8 @@ export class AppBaseControl {
         .app-base-control {
             display: flex;
             flex-direction: column;
-            align-items: stretch
+            align-items: stretch;
+            height: 100%;
         }
     `,
     template: `

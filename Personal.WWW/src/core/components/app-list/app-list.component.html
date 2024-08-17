@@ -21,7 +21,7 @@
     >
         <ng-template pTemplate="header">
             <tr>
-                @for (col of columns; track col.label) {
+                @for (col of columns; track col.name) {
                     @if (col.sortable) {
                         <th [pSortableColumn]="col.name" [ngStyle]="getHeaderStyle(col)">
                             {{ col.label | translate }}
@@ -36,7 +36,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-item>
             <tr>
-                @for (col of columns; track col.label) {
+                @for (col of columns; track col.name) {
                     <td [ngStyle]="getCellStyle(col, item)">
                     @if (col.component) {
                         <app-dynamic [component]="col.component" [value]="item" />

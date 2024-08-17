@@ -25,6 +25,7 @@
     "budget.name": "Nazwa",
     "budget.currency": "Waluta",
     "budget.wallets": "Portfele",
+    "budget.wallet": "Portfel",
     "budget.categories": "Kategorie",
     "budget.category": "Kategoria",
     "budget.dateFrom": "Data od",
@@ -50,6 +51,14 @@
     "budget.msg.categoryEditSuccess": "Pomyślnie edytowano kategorię",
     "budget.msg.categoryDeleteConfirmation": "Czy na pewno chcesz usunąć kategorię {name}?",
     "budget.msg.categoryDeleteSuccess": "Pomyślnie usunięto kategorię {name}",
+    "budget.addTransaction": "Dodaj transakcję",
+    "budget.editTransaction": "Edytuj transakcję",
+    "budget.msg.transactionCreateSuccess": "Pomyślnie dodano transakcję",
+    "budget.msg.transactionEditSuccess": "Pomyślnie edytowano transakcję",
+    "budget.msg.transactionDeleteConfirmation": "Czy na pewno chcesz usunąć tę transakcję na {amount} {currency}?",
+    "budget.msg.transactionDeleteSuccess": "Pomyślnie usunięto transakcję",
+
+
 
     "user.login": "Login",
     "user.password": "Hasło",

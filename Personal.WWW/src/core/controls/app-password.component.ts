@@ -9,6 +9,14 @@ import { AppBaseControl, AppBaseControlComponent } from './app-base-control.comp
     standalone: true,
     imports: [PasswordModule, FormsModule, TranslateModule, ReactiveFormsModule, CommonModule, AppBaseControlComponent],
     selector: 'app-password',
+    styles: `
+        :host ::ng-deep .p-password {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+    `,
     template: `
         <app-base-control>
             <p-password [ngClass]="{ 'ng-invalid': isInvalid(), 'ng-dirty': isInvalid() }" [feedback]="false" [placeholder]="label | translate" [ngModel]="fc?.value" (ngModelChange)="update($event)" />

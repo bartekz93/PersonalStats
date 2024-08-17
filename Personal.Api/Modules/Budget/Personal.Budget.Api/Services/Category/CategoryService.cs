@@ -65,7 +65,7 @@ namespace Personal.Budget.Api.Services.Category
                 p.Add("Name", criteria.Name);
                 p.Add("Type", criteria.Type);
                 p.Add("Offset", criteria.Offset);
-                p.Add("Rows", criteria.Rows);
+                p.Add("Rows", criteria.Rows ?? int.MaxValue);
 
                 var items = await connection.QueryAsync<CategorySearchItem>(Sql.Category_Search, p);
                 return new SearchResult<CategorySearchItem>(items);

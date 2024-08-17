@@ -9,9 +9,15 @@ import { AppBaseControl, AppBaseControlComponent } from './app-base-control.comp
     standalone: true,
     imports: [InputNumberModule, FormsModule, TranslateModule, ReactiveFormsModule, CommonModule, AppBaseControlComponent],
     selector: 'app-number',
+    styles: `
+        :host ::ng-deep input {
+            width: 100%
+        }
+    `,
     template: `
         <app-base-control>
             <p-inputNumber
+                [style]="{ minWidth: '100%' }"
                 [ngClass]="{ 'ng-invalid': isInvalid(), 'ng-dirty': isInvalid() }" 
                 [ngModel]="fc?.value" 
                 (ngModelChange)="update($event)" 

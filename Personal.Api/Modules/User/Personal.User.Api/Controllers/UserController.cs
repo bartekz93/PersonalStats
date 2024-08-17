@@ -57,7 +57,7 @@ namespace Personal.User.Controllers
 
             HttpContext.Response.Cookies.Append("AuthToken", jwtToken, new CookieOptions
             {
-                Expires = DateTimeOffset.Now.AddMinutes(60)
+                Expires = DateTimeOffset.Now.AddMonths(1)
             });
 
             return Ok();

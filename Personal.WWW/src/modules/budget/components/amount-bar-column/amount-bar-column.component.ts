@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, Input, OnInit } from "@angular/core";
-import { Transaction } from "../../services/transactions.service";
+import { Transaction, TransactionSearchItem } from "../../services/transactions.service";
 
 @Component({
     standalone: true,
@@ -12,7 +12,7 @@ import { Transaction } from "../../services/transactions.service";
 export class AmountBarColumn implements OnInit {
     constructor() { }
 
-    @Input() value!: Transaction;
+    @Input() value!: TransactionSearchItem;
     
     ngOnInit(): void {
     }
@@ -21,7 +21,7 @@ export class AmountBarColumn implements OnInit {
         return {
             height: '10px',
             width: this.value.relWidth,
-            backgroundColor: this.value.amount < 0 ? '#3760a4' : '#53aefc',
+            backgroundColor: this.value.amount < 0 ? '#f76f6f' : '#44f74a',
             borderRadius: '5px'
         }
     }
