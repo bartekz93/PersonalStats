@@ -74,5 +74,7 @@
     "user.msg.registerSuccess": "Rejestracja zakończona pomyślnie",
     "user.msg.logoutSuccess": "Poprawnie wylogowano",
     "user.errors.loginAlreadyExists": "Podany login już istnieje",
-    "user.errors.invalidLoginOrPassword": "Nieprawidłowy login lub hasło"
+    "user.errors.invalidLoginOrPassword": "Nieprawidłowy login lub hasło",
+
+    "time.calendar": "Kalendarz"
 }

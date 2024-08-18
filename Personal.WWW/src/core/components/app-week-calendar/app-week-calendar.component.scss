@@ -1,0 +1,113 @@
+$border-color: var(--surface-border);
+
+
+:host {
+    height: 100%;
+}
+
+.circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; 
+    font-size: 10px; 
+    color: white; 
+    width: 24px;
+    height: 24px;
+    padding: 3px; 
+    background-color: var(--primary-color);
+}
+
+.app-calendar {
+    background-color: var(--surface-card);
+    border: 1px solid $border-color;
+    border-radius: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    overflow: hidden;
+
+    .header {
+        display: flex;
+        border-bottom: 1px solid $border-color;
+    }
+
+    .gutter {
+        width: 60px;
+        position: relative;
+
+        .label {
+            width: 100%;
+            text-align: center;
+            height: 20px;
+            line-height: 20px;
+            position: absolute;
+        }
+    }
+
+    .content {
+        display: flex;
+        overflow: auto;
+    }
+}
+
+.day-column {
+    height: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.calendar-item {
+    position: absolute;
+    
+    width: 100%;
+    border-radius: 10px;
+    background-color: pink;
+}
+
+.day-number {
+    font-size: 20px;
+    
+}
+
+.day-header {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.day-gutter {
+    border-right: 1px solid $border-color;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: clip;
+    font-size: 12px;
+}
+
+
+.day-interval {
+    border-bottom: 1px dashed $border-color;
+    border-right: 1px solid $border-color;
+}
+
+
+.day-interval-selected {
+    background-color: var(--primary-color);
+    border-bottom: 1px dashed $border-color;
+    border-right: 1px solid $border-color;
+}
+
+
+.day-interval:hover {
+    background-color: rgba(116, 116, 116, 0.197);
+    cursor: pointer;
+}
+
+.item {
+    position: absolute;
+}

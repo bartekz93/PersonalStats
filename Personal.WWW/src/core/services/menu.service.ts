@@ -128,7 +128,7 @@ export class MenuService {
                 {
                     id: 17,
                     name: 'Log',
-                    url: 'time/log',
+                    url: 'time/calendar',
                     icon: 'pi pi-calendar',
                 },
                 {

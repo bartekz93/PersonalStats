@@ -1,0 +1,41 @@
+<div class="app-calendar">
+    <div class="header">
+        <div class="gutter"></div>
+        @for(day of days; track $index) {
+            <div class="day-header">
+                <div style="display: flex; gap: 5px; flex-direction: column; align-items: center;">
+                    <div class="day-number">{{ day.day }}</div>
+                    {{ day.label }}
+                </div>
+            </div>
+        }    
+    </div>
+    <div class="content">
+        <div class="gutter">
+            @for(label of labels; track $index) {
+                <div class="label" [style]="{top: label.top+'px'}">
+                    <small>{{ label.label }}</small>
+                </div>
+            }
+        </div>
+        @for(day of days; track $index) {
+            <div class="day-column">
+                @for(item of internalItems; track $index) {
+                    @if (item.dayIndex == day.index) {
+                        <div class="calendar-item" [style]="getItemStyle(item)">aa</div>
+                    }
+                }
+                @for(interval of intervals; track $index) {
+                    <div 
+                        [ngClass]="isSelected(day.index, interval.index) ? 'day-interval-selected' : 'day-interval'" 
+                        [style]="getIntervalStyle()"
+                        (mousedown)="onMouseDown(day.index, interval.index)"
+                        (mouseenter)="onMouseEnter(day.index, interval.index)"
+                        (mouseup)="onMouseUp(day.index, interval.index)"
+                    ></div>
+                }
+            </div>
+        }
+    </div>
+    
+</div>
