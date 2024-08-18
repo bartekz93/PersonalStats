@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { CalendarModule } from 'primeng/calendar';
@@ -13,6 +13,11 @@ import { AppBaseControl, AppBaseControlComponent } from './app-base-control.comp
         :host ::ng-deep input {
             width: 100%
         }
+
+        :host ::ng-deep .p-datepicker table td > span { 
+            width: auto;
+            height: auto;
+         }
     `,
     template: `
         <app-base-control>
