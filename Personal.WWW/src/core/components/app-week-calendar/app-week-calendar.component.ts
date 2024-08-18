@@ -45,6 +45,12 @@ export class AppWeekCalendarComponent implements OnInit {
     internalItems: AppWeekCalendarItemInternal[] = [];
 
     @Input() date = new Date();
+    @Input() loading = false;
+
+    @Input() intervalStart = 0;
+    @Input() intervalEnd = 1440;
+    @Input() intervalInMin = 30
+    @Input() intervalPx = 20
 
     weekdays = ["pon.","wt.","śr.","czw.","pt.","sob.", "niedz."];
     days: any[] = [];
@@ -52,11 +58,6 @@ export class AppWeekCalendarComponent implements OnInit {
 
     intervals: AppWeekCalendarInterval[] = []
     labels: any[] = []
-
-    intervalStart = 0;
-    intervalEnd = 1440;
-    intervalInMin = 30
-    intervalPx = 20
 
     isSelecting = false;
     selectedDayIndex = -1;
@@ -66,6 +67,7 @@ export class AppWeekCalendarComponent implements OnInit {
     maxSelectedInterval = -1;
 
     ngOnChanges() {
+        console.log('change')
         this.prepareDays();
         this.prepareItems();
     }
@@ -125,6 +127,7 @@ export class AppWeekCalendarComponent implements OnInit {
         let d = this.date.getDay();
 
         let weekStart = new Date(this.date);
+        weekStart.setHours(8)
         weekStart.setDate(weekStart.getDate()-(d+13)%7);
 
         for (let i=0;i<7;i++) {

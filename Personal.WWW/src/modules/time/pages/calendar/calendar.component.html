@@ -4,7 +4,7 @@
             <app-small-calendar [value]="date" (onChange)="onDateChange($event)" />
         </div>
         <div style="flex: 1">
-            <app-week-calendar [items]="items" (onSelect)="onSelect($event)"></app-week-calendar>
+            <app-week-calendar [items]="items" [date]="date" (onSelect)="onSelect($event)" [intervalInMin]="20" [intervalPx]="15"></app-week-calendar>
         </div>
     </div>
 </app-page>

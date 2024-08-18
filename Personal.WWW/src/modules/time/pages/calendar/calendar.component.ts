@@ -31,6 +31,6 @@ export class CalendarPage implements OnInit {
     }
 
     onDateChange(date: any) {
-        console.log(date)
+        this.date = date;
     }
 }

@@ -5,6 +5,15 @@ $border-color: var(--surface-border);
     height: 100%;
 }
 
+.dimer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: #9b9b9b0d;
+    pointer-events: stroke;
+    z-index: 10;
+}
+
 .circle {
     display: flex;
     align-items: center;
@@ -19,6 +28,7 @@ $border-color: var(--surface-border);
 }
 
 .app-calendar {
+    position: relative;
     background-color: var(--surface-card);
     border: 1px solid $border-color;
     border-radius: 10px;

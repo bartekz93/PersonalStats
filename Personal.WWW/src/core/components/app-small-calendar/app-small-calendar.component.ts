@@ -21,6 +21,7 @@ import { CalendarModule } from 'primeng/calendar';
     template: `
         <p-calendar 
             [style]="{width: '100%'}"
+            [firstDayOfWeek]="1"
             [inline]="true"
             dateFormat="yy-mm-dd" 
             [ngModel]="value" 

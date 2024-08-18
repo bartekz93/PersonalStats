@@ -1,4 +1,7 @@
 <div class="app-calendar">
+    @if (loading) {
+        <div class="dimer"></div>
+    }
     <div class="header">
         <div class="gutter"></div>
         @for(day of days; track $index) {
@@ -37,5 +40,4 @@
             </div>
         }
     </div>
-    
 </div>
