@@ -13,7 +13,7 @@ export class MenuService {
         {
             id: 1,
             name: 'Main',
-            url: 'dashboard',
+            url: 'main/dashboard',
             icon: 'pi pi-wallet',
             color: 'blue',
             childs: [

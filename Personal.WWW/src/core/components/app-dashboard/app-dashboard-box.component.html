@@ -1,0 +1,29 @@
+@if (box.type == 'N' && edit) {
+    <app-button [round]="true" icon="pi pi-arrows-h" [flat]="true" (onClick)="split('H')"/>
+    <app-button [round]="true" icon="pi pi-arrows-v" [flat]="true" (onClick)="split('V')"/>
+    <app-button [round]="true" icon="pi pi-plus" [flat]="true" (onClick)="fill()"/>
+}
+@if ((box.type == 'H' || box.type == 'V') && box.box1 && box.box2) {
+    <div [style]="getStyle()" (mouseup)="onMouseUp()" (mousemove)="onMouseMove($event)" #body>
+        <div [style]="{flex: box.size1}">
+            <app-dashboard-box [box]="box.box1" [edit]="edit" />
+        </div>
+        @if (edit) {
+            <div [style]="getBorderStyle()" class="border" [ngClass]="{'active': isResizing}" (mousedown)="grabBorder()">
+                @if (canJoin()) {
+                    <app-button [round]="true" icon="pi pi-ban" [flat]="true" (onClick)="join()"/>
+                }
+            </div>
+        }
+        <div [style]="{flex: box.size2}">
+            <app-dashboard-box [box]="box.box2" [edit]="edit" />
+        </div>
+    </div>
+}
+@if (box.type == 'F') {
+    <div class="tile-container">
+        <div class="tile">
+            asd
+        </div>
+    </div>
+}

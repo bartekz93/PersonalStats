@@ -1,0 +1,6 @@
+<app-page header="main.dashboard">
+    <ng-container actions>
+        <app-button icon="pi pi-pencil" [flat]="true" (onClick)="edit=!edit" [label]="edit ? 'app.save' : 'app.edit'"/>
+    </ng-container>
+    <app-dashboard [edit]="edit"></app-dashboard>
+</app-page>

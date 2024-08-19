@@ -1,11 +1,13 @@
 <div class="container">
     <div class="toolbar">
         <div class="head">
-        @if (withBack) {
-            <p-button (click)="back()" icon="pi pi-angle-left" [rounded]="true" [text]="true" />
-        }
-        {{header | translate}}
+            @if (withBack) {
+                <p-button (click)="back()" icon="pi pi-angle-left" [rounded]="true" [text]="true" />
+            }
+            {{header | translate}}
+            <ng-content select="[left]"></ng-content>
         </div>
+        
         
         <div class="mr-2">
             @for (action of actions; track action.label) {
