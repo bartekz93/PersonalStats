@@ -21,6 +21,10 @@ export abstract class EditDialogBase<T> {
     open(data: T) {
         this.isEdit = !!data;
         this.formGroup.setValue(data || this.getDefaultValues());
+
+        for (const field in this.formGroup.controls) { 
+            this.formGroup.get(field)?.markAsUntouched();
+        }
     }
 
     close() {
