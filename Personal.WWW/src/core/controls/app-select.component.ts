@@ -17,6 +17,7 @@ import { AppTemplateDirective } from '@core/directives/app-template.directive';
                 [ngClass]="{ 'ng-invalid': isInvalid(), 'ng-dirty': isInvalid() }"
                 [loading]="loading" 
                 [options]="options" 
+                [filter]="filter"
                 [ngModel]="fc?.value" 
                 (ngModelChange)="update($event)" 
                 [placeholder]="label | translate" 
@@ -43,6 +44,7 @@ export class AppSelectComponent extends AppBaseControl {
 
     @ContentChildren(AppTemplateDirective) templates?: QueryList<AppTemplateDirective>;
 
+    @Input() filter = false;
     @Input() loading = false;
     @Input() options: any[] = [];
 
