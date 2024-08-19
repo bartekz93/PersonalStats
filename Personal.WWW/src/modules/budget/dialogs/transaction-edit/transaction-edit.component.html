@@ -1,0 +1,18 @@
+<app-dialog 
+    [code]="name" 
+    [header]="isEdit ? 'budget.editTransaction' : 'budget.addTransaction'" 
+    (open)="open($event)"
+>
+    <app-form (onSubmit)="save($event)" [formGroup]="formGroup">
+        <wallet-select label="budget.wallet" [fc]="control('walletId')" />
+        <category-select label="budget.category" [fc]="control('categoryId')" />
+        <app-date label="budget.date" [fc]="control('date')" />
+        <app-number label="budget.amount" [fc]="control('amount')" />
+        <app-textarea label="budget.description" [fc]="control('description')" />
+
+        <ng-container actions>
+            <app-button [flat]="true" label="app.cancel" (onClick)="close()" />
+            <app-button [submit]="true" label="app.save" [loading]="isSaving" />
+        </ng-container>
+    </app-form>
+</app-dialog>

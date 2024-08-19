@@ -14,7 +14,7 @@ import { AppTemplateDirective } from '@core/directives/app-template.directive';
 import { AppConfirmService } from '@core/services/app-confirm.service';
 import { AppMessageService } from '@core/services/app-message.service';
 import budgetModule from '@budget/budget.module';
-import { TransactionSearchItem, TransactionService } from '@budget/services/transactions.service';
+import { TransactionEdit, TransactionSearchItem, TransactionService } from '@budget/services/transactions.service';
 import { Format } from '@core/helpers/formatters';
 import { AppDate } from '@core/controls/app-date.component';
 import { AppNumber } from '@core/controls/app-number.component';
@@ -22,12 +22,29 @@ import { WalletMultiSelectComponent } from '@budget/controls/wallet-multi-select
 import { CategoryMultiSelectComponent } from '@budget/controls/category-multi-select.component';
 import { AppCircleLabelComponent } from '@core/components/app-circle-label/app-circle-label.component';
 import { AmountBarColumn } from '@budget/components/amount-bar-column/amount-bar-column.component';
+import { TransactionEditDialog } from '@budget/dialogs/transaction-edit/transaction-edit.component';
 
 @Component({
     selector: 'transactions-page',
     templateUrl: 'transactions.component.html',
     standalone: true,
-    imports: [TranslateModule, AppPage, AppButtonComponent, CategoryMultiSelectComponent, AppCircleLabelComponent, WalletMultiSelectComponent, AppFilterPanel, AppNumber, AppText, AppDate, AppList, AppError, CommonModule, AppTemplateDirective, AppListEditColumn],
+    imports: [
+        TranslateModule, 
+        AppPage, 
+        AppButtonComponent, 
+        CategoryMultiSelectComponent, 
+        AppCircleLabelComponent, 
+        WalletMultiSelectComponent, 
+        AppFilterPanel, 
+        AppNumber, 
+        AppText, 
+        AppDate, 
+        AppList, 
+        AppError, 
+        CommonModule, 
+        AppTemplateDirective, 
+        AppListEditColumn,
+        TransactionEditDialog],
     providers: []
 })
 
@@ -75,7 +92,15 @@ export class TransactionsPage extends AppSearchPageBase<TransactionSearchItem> {
     }
 
     showEditDialog(item?: TransactionSearchItem) {
-        this.appDialogService.open(budgetModule.dialogs.TransactionEditDialog, item)
+        
+        this.appDialogService.open(budgetModule.dialogs.TransactionEditDialog, item ? {
+            id: item.id,
+            amount: item.amount,
+            categoryId: item.categoryId,
+            walletId: item.walletId,
+            date: item.date.substring(0, 10),
+            description: item.description
+        } as TransactionEdit : null);
     }
 
     async showDeleteDialog(item: TransactionSearchItem) {

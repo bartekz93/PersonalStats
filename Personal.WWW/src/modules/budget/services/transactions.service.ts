@@ -61,6 +61,6 @@ export class TransactionService extends BaseService {
     }
 
     remove(id: number): Promise<any> {
-        return this.delete(`budget\\transactions\${id}`);
+        return this.delete(`budget\\transactions\\${id}`);
     }
 }
