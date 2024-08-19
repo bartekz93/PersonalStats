@@ -9,14 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Modules\Budget\Personal.Budget.Api\Personal.Budget.Api.csproj" />
-    <ProjectReference Include="..\..\Modules\User\Personal.User.Api\Personal.User.Api.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.7" />
     <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="8.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Modules\Budget\Personal.Budget.Api\Personal.Budget.Api.csproj" />
+    <ProjectReference Include="..\..\Modules\Time\Personal.Time.Api\Personal.Time.Api.csproj" />
+    <ProjectReference Include="..\..\Modules\User\Personal.User.Api\Personal.User.Api.csproj" />
   </ItemGroup>
 
 </Project>

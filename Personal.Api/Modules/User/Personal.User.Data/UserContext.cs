@@ -26,7 +26,7 @@ namespace Personal.User.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(configuration.GetConnectionString("UserConnectionString"));
+                optionsBuilder.UseSqlServer(configuration.GetConnectionString("DbConnectionString"));
             }
         }
 

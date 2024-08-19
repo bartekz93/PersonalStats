@@ -3,7 +3,9 @@ using Microsoft.IdentityModel.Tokens;
 using Personal.Bootstraper.Middlewares;
 using Personal.User;
 using Personal.Budget;
+using Personal.Time;
 using System.Text;
+using Personal.Time.Api;
 
 namespace Personal.Bootstraper
 {
@@ -24,6 +26,7 @@ namespace Personal.Bootstraper
 
             builder.Services.AddUserModule();
             builder.Services.AddBudgetModule();
+            builder.Services.AddTimeModule();
 
             builder.Services.AddLogging(x => x.AddLog4Net("log4net.config"));
 

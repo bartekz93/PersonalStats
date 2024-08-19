@@ -1,28 +1,26 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Personal.Budget.Data.Models;
+using Personal.Time.Data.Models;
 
-namespace Personal.Budget.Data
+namespace Personal.Time.Data
 {
-    public class BudgetContext : DbContext
+    public class TimeContext : DbContext
     {
-        public virtual DbSet<Wallet> Wallets { get; set; }
-        public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Transaction> Transactions { get; set; }
+        public virtual DbSet<Activity> Activities { get; set; }
+        public virtual DbSet<Entry> Entries { get; set; }
 
         private readonly IConfiguration configuration;
 
-        public BudgetContext(IConfiguration configuration)
+        public TimeContext(IConfiguration configuration)
         {
-            this.configuration = configuration;
+            this.configuration=configuration;
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            WalletMapping.Configure(builder);
-            CategoryMapping.Configure(builder);
-            TransactionMapping.Configure(builder);
+            ActivityMapping.Configure(builder);
+            EntryMapping.Configure(builder);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
