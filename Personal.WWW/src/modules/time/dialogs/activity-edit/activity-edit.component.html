@@ -1,0 +1,18 @@
+<app-dialog 
+    [code]="name" 
+    [header]="isEdit ? 'time.editActivity' : 'time.addActivity'" 
+    (open)="open($event)"
+>
+    <app-form (onSubmit)="save($event)" [formGroup]="formGroup" [horizontal]="false">
+        <div style="display: flex; align-items: center; gap: 10px">
+            <app-color-select label="" [fc]="control('color')" />
+            <app-icon-select label="" [fc]="control('icon')" [color]="control('color').value"/>
+        </div>
+        <app-text label="time.name" [fc]="control('name')" />
+
+        <ng-container actions>
+            <app-button [flat]="true" label="app.cancel" (onClick)="close()" />
+            <app-button [submit]="true" label="app.save" [loading]="isSaving" />
+        </ng-container>
+    </app-form>
+</app-dialog>

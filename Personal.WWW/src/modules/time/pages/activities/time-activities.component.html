@@ -1,0 +1,23 @@
+<activity-dialog (onSave)="search()" />
+<app-page header="time.activities">
+    <ng-container actions>
+        <app-button [flat]="true" label="app.add" icon="pi pi-plus" (click)="showEditDialog()" />
+    </ng-container>
+    <app-filter-panel (onSearch)="search($event)" (onClear)="clear()" [loading]="loading" [formGroup]="filters">
+        <app-text label="budget.name" [fc]="filter('name')" />
+    </app-filter-panel>
+    <app-list
+        [columns]="columns" 
+        [criteria]="criteria" 
+        [result]="result" 
+        [loading]="loading" 
+        (onSearch)="search($event)" 
+    >
+        <ng-template appTemplate="actions" let-item="item">
+            <app-list-edit-column [id]="item.id" [deletingId]="deletingId" (onEdit)="showEditDialog(item)" (onDelete)="showDeleteDialog(item)"></app-list-edit-column>
+        </ng-template>
+        <ng-template appTemplate="name" let-item="item">
+            <app-circle-label [color]="item.color" [label]="item.name" [icon]="item.icon" />
+        </ng-template>
+    </app-list>
+</app-page>
