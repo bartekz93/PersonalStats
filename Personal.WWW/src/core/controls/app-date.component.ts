@@ -13,15 +13,11 @@ import { AppBaseControl, AppBaseControlComponent } from './app-base-control.comp
         :host ::ng-deep input {
             width: 100%
         }
-
-        :host ::ng-deep .p-datepicker table td > span { 
-            width: auto;
-            height: auto;
-         }
     `,
     template: `
         <app-base-control>
             <p-calendar 
+                appendTo="body"
                 [style]="{width: '100%'}"
                 [ngClass]="{ 'ng-invalid': isInvalid(), 'ng-dirty': isInvalid() }" 
                 dateFormat="yy-mm-dd" 

@@ -13,6 +13,7 @@ import { AppTemplateDirective } from '@core/directives/app-template.directive';
     template: `
         <app-base-control>
             <p-dropdown 
+                appendTo="body"
                 [style]="{ minWidth: '100%'}"
                 [ngClass]="{ 'ng-invalid': isInvalid(), 'ng-dirty': isInvalid() }"
                 [loading]="loading" 
