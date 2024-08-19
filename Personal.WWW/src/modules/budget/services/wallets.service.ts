@@ -31,7 +31,6 @@ export class WalletService extends BaseService {
     }
 
     async edit(edit: WalletEdit) {
-        console.log('edit')
         return this.put("budget/wallets", edit);
     }
 

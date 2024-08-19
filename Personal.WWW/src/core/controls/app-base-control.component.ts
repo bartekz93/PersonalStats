@@ -24,7 +24,6 @@ export class AppBaseControl {
     }
 
     update(val: string): void {
-        console.log(val);
         this.fc?.markAsTouched();
         this.fc?.setValue(val);
     }

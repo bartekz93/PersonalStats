@@ -31,6 +31,5 @@ export class LangSelect implements OnInit {
      change(lang: any) {
         this.selected = lang;
         this.langService.setLang(lang.code);
-        console.log(lang);
      }
 }

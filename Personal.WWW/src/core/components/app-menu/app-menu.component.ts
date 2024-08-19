@@ -26,8 +26,6 @@ export class AppMenuComponent {
     constructor(private menuService: MenuService) {
         let appItems = menuService.getMenu();
         this.items = appItems.map(x => this.mapMenuItem(x));
-
-        console.log(this.items);
     }
 
 }

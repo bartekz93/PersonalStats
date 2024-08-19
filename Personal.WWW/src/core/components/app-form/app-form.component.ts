@@ -25,10 +25,6 @@ export class AppFormComponent implements OnInit {
     ngOnInit() { 
     }
 
-    ngAfterViewInit() {
-        console.log(this.controls);
-    }
-
     getFiltersStyle() {
         return {
             display: 'flex',

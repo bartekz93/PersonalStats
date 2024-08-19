@@ -67,7 +67,6 @@ export class AppWeekCalendarComponent implements OnInit {
     maxSelectedInterval = -1;
 
     ngOnChanges() {
-        console.log('change')
         this.prepareDays();
         this.prepareItems();
     }
@@ -168,7 +167,6 @@ export class AppWeekCalendarComponent implements OnInit {
         this.internalItems = [];
         for (let item of this.items) {
             let day = this.days.find(d => d.date == item.date);
-            console.log('aaa', day)
             if (!day) continue;
 
             let pxPerMinute = this.intervalPx / this.intervalInMin
@@ -185,8 +183,6 @@ export class AppWeekCalendarComponent implements OnInit {
                 height: `${minutesSpan*pxPerMinute}px`
             });
         }
-
-        console.log('prepare items', this.internalItems)
     }
 
 

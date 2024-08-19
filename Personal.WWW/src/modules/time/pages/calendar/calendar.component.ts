@@ -27,7 +27,6 @@ export class CalendarPage implements OnInit {
     ];
 
     onSelect(e: AppWeekCalendarSelectEvent) {
-        console.log(e);
     }
 
     onDateChange(date: any) {
