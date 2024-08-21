@@ -101,4 +101,7 @@
     "time.msg.entryDeleteSuccess": "Pomyślnie usunięto wpis",
     "time.msg.entryEditSuccess": "Pomyślnie edytowano wpis",
     "time.msg.entryCreateSuccess": "Pomyślnie utworzono wpis",
+
+    "diet.food": "Produkty",
+    "diet.meals": "Posiłki"
 }

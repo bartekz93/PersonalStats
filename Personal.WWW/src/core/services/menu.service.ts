@@ -23,6 +23,12 @@ export class MenuService {
                     url: 'main/dashboard',
                     icon: 'pi pi-chart-line',
                 },
+                {
+                    id: 6,
+                    name: 'Reports',
+                    url: 'main/reports',
+                    icon: 'pi pi-gauge',
+                },
             ]
         },
         {
@@ -50,12 +56,6 @@ export class MenuService {
                     url: 'budget/categories',
                     icon: 'pi pi-box',
                 },
-                {
-                    id: 6,
-                    name: 'Reports',
-                    url: 'budget/reports',
-                    icon: 'pi pi-gauge',
-                },
             ]
         },
         {
@@ -76,12 +76,6 @@ export class MenuService {
                     name: 'Meals',
                     url: 'diet/meals',
                     icon: 'pi pi-filter',
-                },
-                {
-                    id: 10,
-                    name: 'Reports',
-                    url: 'diet/reports',
-                    icon: 'pi pi-gauge',
                 },
             ]
         },
@@ -104,12 +98,6 @@ export class MenuService {
                     url: 'habits/tracker',
                     icon: 'pi pi-star',
                 },
-                {
-                    id: 14,
-                    name: 'Reports',
-                    url: 'habits/reports',
-                    icon: 'pi pi-gauge',
-                },
             ]
         },
         {
@@ -130,12 +118,6 @@ export class MenuService {
                     name: 'Log',
                     url: 'time/calendar',
                     icon: 'pi pi-calendar',
-                },
-                {
-                    id: 18,
-                    name: 'Reports',
-                    url: 'habits/reports',
-                    icon: 'pi pi-gauge',
                 },
             ]
         },
