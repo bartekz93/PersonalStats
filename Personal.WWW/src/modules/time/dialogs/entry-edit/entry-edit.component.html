@@ -1,0 +1,18 @@
+<app-dialog 
+    [code]="name" 
+    [header]="isEdit ? 'time.editActivity' : 'time.addActivity'" 
+    (open)="open($event)"
+>
+    <app-form (onSubmit)="save($event)" [formGroup]="formGroup" [horizontal]="false">
+        <activity-select label="time.activity" [fc]="control('activityId')" />
+        <app-date label="time.date" [fc]="control('date')" />
+        <app-time label="time.timeFrom" [fc]="control('timeFrom')" />
+        <app-time label="time.timeTo" [fc]="control('timeTo')" />
+        <app-textarea label="time.description" [fc]="control('description')" />
+
+        <ng-container actions>
+            <app-button [flat]="true" label="app.cancel" (onClick)="close()" />
+            <app-button [submit]="true" label="app.save" [loading]="isSaving" />
+        </ng-container>
+    </app-form>
+</app-dialog>

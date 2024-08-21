@@ -6,10 +6,13 @@
         <div class="gutter"></div>
         @for(day of days; track $index) {
             <div class="day-header">
-                <div style="display: flex; gap: 5px; flex-direction: column; align-items: center;">
+                @if (day.isToday) {
+                    <div class="day-number circle">{{ day.day }}</div>
+                } 
+                @else {
                     <div class="day-number">{{ day.day }}</div>
-                    {{ day.label }}
-                </div>
+                }
+                {{ day.label }}
             </div>
         }    
     </div>
@@ -25,7 +28,21 @@
             <div class="day-column">
                 @for(item of internalItems; track $index) {
                     @if (item.dayIndex == day.index) {
-                        <div class="calendar-item" [style]="getItemStyle(item)">aa</div>
+                        <div class="calendar-item" [style]="getItemStyle(item)" (click)="onClickItem(item)">
+                            <div class="actions">
+                                <app-button [round]="true" [secondary]="true" [flat]="true" icon="pi pi-times" tooltip="app.delete" (onClick)="onRemoveItem($event, item)"/>
+                            </div>
+                            @if (item.baseItem.loading) {
+                                <div class="loading">
+                                    <i class="pi pi-spin pi-spinner text-primary" style="font-size: 2rem"></i>
+                                </div>
+                            }
+                            <app-circle-label [icon]="item.baseItem.icon || ''" [color]="item.baseItem.color" />
+                            @if (item.height > 50) {
+                                <div class="line1">{{item.baseItem.line1}}</div>
+                                <div class="line2">{{item.baseItem.line2}}</div>
+                            }
+                        </div>
                     }
                 }
                 @for(interval of intervals; track $index) {

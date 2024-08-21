@@ -25,8 +25,11 @@ export class AppDialogComponent implements OnInit {
     @Output() open = new EventEmitter<any>();
 
     ngOnInit() { 
-        this.appDialogService.register(this.code, (data) => {
-            this.open.emit(data);
+        this.appDialogService.register(this.code, (data, options) => {
+            this.open.emit({
+                data: data,
+                options: options
+            });
         })
     }
 

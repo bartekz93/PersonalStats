@@ -17,12 +17,13 @@ namespace Personal.Time.Api.Services.Entry
 
         public async Task<int> Create(EntryEdit dto, int userId)
         {
+            var dateStr = dto.Date.ToString("yyyy-MM-dd");
             var model = new Data.Models.Entry
             {
                 IsActive = true,
                 ActivityId = dto.ActivityId,
-                DateFrom = dto.DateFrom,
-                DateTo = dto.DateTo,
+                DateFrom = DateTime.ParseExact($"{dateStr} {dto.TimeFrom}", "yyyy-MM-dd HH:mm", null),
+                DateTo = DateTime.ParseExact($"{dateStr} {dto.TimeTo}", "yyyy-MM-dd HH:mm", null),
                 Description = dto.Description,
                 ModifyUserId = userId,
                 CreateUserId = userId,
@@ -45,10 +46,11 @@ namespace Personal.Time.Api.Services.Entry
 
         public async Task Edit(EntryEdit dto, int userId)
         {
+            var dateStr = dto.Date.ToString("yyyy-MM-dd");
             var model = timeContext.Entries.Where(x => x.Id == dto.Id).FirstOrDefault();
             model.Description = dto.Description;
-            model.DateFrom = dto.DateFrom;
-            model.DateTo = dto.DateTo;
+            model.DateFrom = DateTime.ParseExact($"{dateStr} {dto.TimeFrom}", "yyyy-MM-dd HH:mm", null);
+            model.DateTo = DateTime.ParseExact($"{dateStr} {dto.TimeTo}", "yyyy-MM-dd HH:mm", null); ;
             model.ActivityId = dto.ActivityId;
             model.ModifyDate = DateTime.Now;
             model.ModifyUserId = userId;

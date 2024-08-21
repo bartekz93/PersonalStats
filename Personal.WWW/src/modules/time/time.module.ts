@@ -11,7 +11,8 @@ export default {
         { path: `${modulePrefix}/calendar`, component: CalendarPage, canActivate: [AuthGuard] }
     ] as Routes,
     dialogs: {
-        ActivityEditDialog: 'time.activityEditDialog'
+        ActivityEditDialog: 'time.activityEditDialog',
+        EntryEditDialog: 'time.entryEditDialog'
     },
     lists: {
         ActivitiesList: 'time.activitiesList'

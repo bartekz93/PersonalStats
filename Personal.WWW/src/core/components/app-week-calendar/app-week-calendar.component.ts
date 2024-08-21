@@ -1,5 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AppCalendarService } from '@core/services/app-calendar.service';
+import { AppButtonComponent } from "../app-button/app-button.component";
+import { AppCircleLabelComponent } from '../app-circle-label/app-circle-label.component';
 
 export interface AppWeekCalendarSelectEvent {
     date: string;
@@ -8,17 +11,22 @@ export interface AppWeekCalendarSelectEvent {
 }
 
 export interface AppWeekCalendarItem {
+    id: number;
     date: string;
     timeFrom: string;
     timeTo: string;
+    color: string;
+    data: any;
+    icon?: string;
+    line1?: string;
+    line2?: string;
+    loading?: boolean;
 }
 
 interface AppWeekCalendarItemInternal {
-    date: string;
-    timeFrom: string;
-    timeTo: string;
-    top: string;
-    height: string;
+    baseItem: AppWeekCalendarItem;
+    top: number;
+    height: number;
     dayIndex: number;
 }
 
@@ -30,16 +38,21 @@ interface AppWeekCalendarInterval {
 
 @Component({
     standalone: true,
-    imports: [ CommonModule ],
+    imports: [
+        CommonModule, 
+        AppButtonComponent,
+        AppCircleLabelComponent],
     selector: 'app-week-calendar',
     templateUrl: 'app-week-calendar.component.html',
     styleUrl: 'app-week-calendar.component.scss'
 })
 
 export class AppWeekCalendarComponent implements OnInit {
-    constructor() { }
+    constructor(private calendarService: AppCalendarService) { }
 
     @Output() onSelect = new EventEmitter<AppWeekCalendarSelectEvent>();
+    @Output() onEdit = new EventEmitter<AppWeekCalendarItem>();
+    @Output() onRemove = new EventEmitter<AppWeekCalendarItem>();
 
     @Input() items: AppWeekCalendarItem[] = [];
     internalItems: AppWeekCalendarItemInternal[] = [];
@@ -71,6 +84,15 @@ export class AppWeekCalendarComponent implements OnInit {
         this.prepareItems();
     }
 
+    onClickItem(item: AppWeekCalendarItemInternal) {
+        this.onEdit.emit(item.baseItem);
+    }
+
+    onRemoveItem(e: MouseEvent, item: AppWeekCalendarItemInternal) {
+        e.stopPropagation();
+        this.onRemove.emit(item.baseItem);
+    }
+
     onMouseDown(dayIndex: number, intervalIndex: number) {
         this.selectedDayIndex = dayIndex;
         this.firstSelectedInterval = intervalIndex;
@@ -81,8 +103,8 @@ export class AppWeekCalendarComponent implements OnInit {
     onMouseUp(dayIndex: number, intervalIndex: number) {
         this.onSelect.emit({
             date: this.days[this.selectedDayIndex].date,
-            timeFrom: this.minutesToTime(this.intervals[this.minSelectedInterval].minutesFrom),
-            timeTo: this.minutesToTime(this.intervals[this.maxSelectedInterval].minutesTo)
+            timeFrom: this.calendarService.minutesToTime(this.intervals[this.minSelectedInterval].minutesFrom),
+            timeTo: this.calendarService.minutesToTime(this.intervals[this.maxSelectedInterval].minutesTo)
         });
 
         this.selectedDayIndex = -1;
@@ -116,29 +138,27 @@ export class AppWeekCalendarComponent implements OnInit {
 
     getItemStyle(item: AppWeekCalendarItemInternal) {
         return {
-            top: item.top,
-            height: item.height
+            top: `${item.top}px`,
+            height: `${item.height}px`,
+            backgroundColor: this.addAlpha(item.baseItem.color, 0.3),
         }
     }
 
+    addAlpha(color: string, opacity: number) {
+        var _opacity = Math.round(Math.min(Math.max(opacity ?? 1, 0), 1) * 255);
+        return color + _opacity.toString(16).toUpperCase();
+    }
+
     prepareDays() {
-        this.days = [];
-        let d = this.date.getDay();
-
-        let weekStart = new Date(this.date);
-        weekStart.setHours(8)
-        weekStart.setDate(weekStart.getDate()-(d+13)%7);
-
-        for (let i=0;i<7;i++) {
-            let day = new Date(weekStart);
-            this.days.push({
-                index: i,
-                date: day.toISOString().substring(0, 10),
-                day: day.getDate(),
-                label: this.weekdays[i]
-            });
-            weekStart.setDate(weekStart.getDate()+1);
-        }
+        let today = new Date().toJSON().substring(0, 10);
+        let week = this.calendarService.getWeek(this.date);
+        this.days = week.map((day, i) => ({
+            index: i,
+            date: day.toISOString().substring(0, 10),
+            day: day.getDate(),
+            label: this.weekdays[i],
+            isToday: today == day.toJSON().substring(0, 10)
+        }))
     }
 
     prepareIntervals() {
@@ -157,7 +177,7 @@ export class AppWeekCalendarComponent implements OnInit {
             if (minutes%60 == 0) {
                 this.labels.push({
                     top: i*this.intervalPx-10,
-                    label: this.minutesToTime(minutes),
+                    label: this.calendarService.minutesToTime(minutes),
                 })
             }
         }
@@ -170,17 +190,15 @@ export class AppWeekCalendarComponent implements OnInit {
             if (!day) continue;
 
             let pxPerMinute = this.intervalPx / this.intervalInMin
-            let minutesFrom = this.timeToMinutes(item.timeFrom)
-            let minutesTo = this.timeToMinutes(item.timeTo)
+            let minutesFrom = this.calendarService.timeToMinutes(item.timeFrom)
+            let minutesTo = this.calendarService.timeToMinutes(item.timeTo)
             let minutesSpan = minutesTo - minutesFrom;
 
             this.internalItems.push({
-                date: item.date,
+                baseItem: item,
                 dayIndex: day.index,
-                timeFrom: item.timeFrom,
-                timeTo: item.timeTo,
-                top: `${minutesFrom*pxPerMinute}px`,
-                height: `${minutesSpan*pxPerMinute}px`
+                top: minutesFrom*pxPerMinute,
+                height: minutesSpan*pxPerMinute
             });
         }
     }
@@ -189,16 +207,5 @@ export class AppWeekCalendarComponent implements OnInit {
     ngOnInit() { 
         this.prepareDays();
         this.prepareIntervals();
-    }
-
-    minutesToTime(minutes: number) {
-        let part1 = `00${Math.floor(minutes/60)}`.slice(-2)
-        let part2 = `00${minutes%60}`.slice(-2);
-        return `${part1}:${part2}`
-    }
-
-    timeToMinutes(time: string) {
-        let el = time.split(':');
-        return Number.parseInt(el[0])*60+Number.parseInt(el[1]);
     }
 }

@@ -9,22 +9,9 @@ $border-color: var(--surface-border);
     width: 100%;
     height: 100%;
     position: absolute;
-    background-color: #9b9b9b0d;
+    background-color: #9b9b9b48;
     pointer-events: stroke;
     z-index: 10;
-}
-
-.circle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%; 
-    font-size: 10px; 
-    color: white; 
-    width: 24px;
-    height: 24px;
-    padding: 3px; 
-    background-color: var(--primary-color);
 }
 
 .app-calendar {
@@ -72,16 +59,54 @@ $border-color: var(--surface-border);
 
 .calendar-item {
     position: absolute;
-    
     width: 100%;
-    border-radius: 10px;
+    cursor: pointer;
+    border-radius: 5px;
     background-color: pink;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+
+    .actions {
+        visibility: hidden;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+    }
+
+    .loading {
+        background-color: #0000005e;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &:hover .actions {
+        visibility: visible;
+    }
+
+    .line1 {
+        font-weight: bold;
+        max-width: 100%;
+        
+        text-overflow: clip;
+    }
+
+    .line2 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+        font-size: small;
+        padding: 10px;
+        text-align: center;
+    }
 }
 
-.day-number {
-    font-size: 20px;
-    
-}
 
 .day-header {
     flex: 1;
@@ -89,7 +114,29 @@ $border-color: var(--surface-border);
     flex-direction: column;
     align-items: center;
     padding: 10px;
+    gap: 5px;
+
+    .day-number {
+        font-size: 20px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+    }
+
+    .circle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%; 
+        color: white; 
+        width: 32px;
+        height: 32px;
+        padding: 3px; 
+        background-color: var(--primary-color);
+    }
 }
+
+
 
 .day-gutter {
     border-right: 1px solid $border-color;

@@ -1,4 +1,9 @@
 {
+    "app.months": "Styczeń|Luty|Marzec|Kwiecień|Maj|Czerwiec|Lipiec|Sierpień|Wrzesień|Październik|Listopad|Grudzień",
+    "app.monthsShort": "Sty|Lut|Marz|Kwi|Maj|Czer|Lip|Sier|Wrz|Paź|Lis|Gru",
+    "app.days": "Niedziela|Poniedziałek|Wtorek|Środa|Czwartek|Piątek|Sobota",
+    "app.daysShort": "Ndz|Pon|Wt|Śr|Czw|Pt|Sb",
+
     "app.error": "Błąd",
     "app.currency": "Waluta",
     "app.success": "Sukces",
@@ -79,12 +84,21 @@
     "user.errors.invalidLoginOrPassword": "Nieprawidłowy login lub hasło",
 
     "time.name": "Nazwa",
+    "time.description": "Opis",
+    "time.date": "Data",
+    "time.timeFrom": "Czas od",
+    "time.timeTo": "Czas do",
     "time.calendar": "Kalendarz",
+    "time.activity": "Aktywność",
     "time.editActivity": "Edytuj aktywność",
     "time.addActivity": "Dodaj aktywność",
+    "time.activities": "Aktywności",
     "time.msg.activityDeleteConfirmation": "Czy na pewno chcesz usunąć aktywność {name}?",
     "time.msg.activityDeleteSuccess": "Pomyślnie usunięto aktywność {name}",
     "time.msg.activityEditSuccess": "Pomyślnie edytowano aktywność",
     "time.msg.activityCreateSuccess": "Pomyślnie utworzono aktywność",
-    "time.activities": "Aktywności"
+    "time.msg.entryDeleteConfirmation": "Czy na pewno chcesz usunąć wpis \"{name}\"?",
+    "time.msg.entryDeleteSuccess": "Pomyślnie usunięto wpis",
+    "time.msg.entryEditSuccess": "Pomyślnie edytowano wpis",
+    "time.msg.entryCreateSuccess": "Pomyślnie utworzono wpis",
 }

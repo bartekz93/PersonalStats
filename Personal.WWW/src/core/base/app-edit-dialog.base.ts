@@ -1,5 +1,5 @@
 import { FormControl, FormGroup } from "@angular/forms";
-import { AppDialogService } from "@core/services/app-dialog.service";
+import { AppDialogOpenOptions, AppDialogService } from "@core/services/app-dialog.service";
 import { AppMessageService } from "@core/services/app-message.service";
 
 export abstract class EditDialogBase<T> {
@@ -18,9 +18,9 @@ export abstract class EditDialogBase<T> {
         return this.formGroup?.get(name) as FormControl;
     }
 
-    open(data: T) {
-        this.isEdit = !!data;
-        this.formGroup.setValue(data || this.getDefaultValues());
+    open(event: { data: T, options?: AppDialogOpenOptions }) {
+        this.isEdit = event.options?.isEdit != undefined ? event.options.isEdit : !!event.data;
+        this.formGroup.setValue(event.data || this.getDefaultValues());
 
         for (const field in this.formGroup.controls) { 
             this.formGroup.get(field)?.markAsUntouched();

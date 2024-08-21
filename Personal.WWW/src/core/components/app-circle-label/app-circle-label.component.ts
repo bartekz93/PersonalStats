@@ -40,7 +40,10 @@ export class AppCircleLabelComponent implements OnInit {
             display: 'flex',
             gap: '10px', 
             alignItems: 'center',
-            cursor: this.clickable ? 'pointer' : 'normal'
+            cursor: this.clickable ? 'pointer' : 'normal',
+            whiteSpace: 'nowrap',
+            flexWrap: 'nowrap',
+            textOverflow: 'ellipsis'
         }
     }
 

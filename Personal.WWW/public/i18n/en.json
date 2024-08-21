@@ -1,4 +1,9 @@
 {
+    "app.months": "January|February|March|April|May|June|July|August|September|October|November|December",
+    "app.monthsShort": "Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sept|Oct|Nov|Dec",
+    "app.days": "Sunday|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday",
+    "app.daysShort": "Su|Mo|Tu|We|Th|Fr|Sa",
+
     "app.clear": "Clear",
     "app.search": "Search",
     "app.add": "Add",

@@ -1,10 +1,20 @@
+<entry-dialog (onSave)="refresh()" />
 <app-page header="time.calendar">
     <div style="display: flex; height: 100%; overflow: hidden; gap: 10px">
         <div>
             <app-small-calendar [value]="date" (onChange)="onDateChange($event)" />
         </div>
         <div style="flex: 1">
-            <app-week-calendar [items]="items" [date]="date" (onSelect)="onSelect($event)" [intervalInMin]="20" [intervalPx]="15"></app-week-calendar>
+            <app-week-calendar 
+                [items]="items" 
+                [date]="date" 
+                [intervalInMin]="20" 
+                [intervalPx]="15"
+                [loading]="loading"
+                (onSelect)="onSelect($event)" 
+                (onEdit)="onEdit($event)" 
+                (onRemove)="onRemove($event)" 
+            ></app-week-calendar>
         </div>
     </div>
 </app-page>

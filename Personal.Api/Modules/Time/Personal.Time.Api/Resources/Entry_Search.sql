@@ -11,9 +11,10 @@ SELECT
 	E.[DateFrom],
 	E.[DateTo],
 	E.[Description],
-	A.[Name] AS ActvityName,
-	A.[Color] AS ActvityColor,
-	A.[Icon] AS ActvityIcon,
+	A.[Id] AS ActivityId,
+	A.[Name] AS ActivityName,
+	A.[Color] AS ActivityColor,
+	A.[Icon] AS ActivityIcon,
 	COUNT(*) OVER() AS TotalRows
 FROM 
 	[time].[Entry] AS E (NOLOCK)
