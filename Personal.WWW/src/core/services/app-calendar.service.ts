@@ -6,6 +6,24 @@ export enum CalendarInterval {
 
 @Injectable({providedIn: 'root'})
 export class AppCalendarService {
+    getDaysBetween(date1: Date, date2: Date) {
+        let dates = [];
+
+        let i = new Date(date1.getTime());
+        while (i <= date2) {
+            dates.push(i);
+            i = new Date(i.valueOf());
+            i.setDate(i.getDate()+1);
+        }
+
+        return dates;
+    }
+
+    minutesDiff(date1: Date, date2: Date) {
+        let miliseconds = date2.getTime() - date1.getTime();
+        return Math.floor(miliseconds/60000);
+    }
+
     intervalToString(interval: CalendarInterval) {
         switch (interval) {
             case CalendarInterval.week: return 'week'

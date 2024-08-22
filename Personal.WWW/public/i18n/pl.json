@@ -78,6 +78,7 @@
     "budget.msg.transactionDeleteSuccess": "Pomyślnie usunięto transakcję",
     "budget.outcomeDistribution": "Rozkład wydatków",
     "budget.incomeDistribution": "Rozkład przychodów",
+    "budget.outcomeBarChart": "Wykres wydatków",
 
 
     "user.login": "Login",
@@ -114,6 +115,8 @@
     "time.msg.entryDeleteSuccess": "Pomyślnie usunięto wpis",
     "time.msg.entryEditSuccess": "Pomyślnie edytowano wpis",
     "time.msg.entryCreateSuccess": "Pomyślnie utworzono wpis",
+    "time.activityPieChart": "Rozkład aktywności",
+    "time.activityBarChart": "Wykres aktywności",
 
     "diet.food": "Produkty",
     "diet.meals": "Posiłki",

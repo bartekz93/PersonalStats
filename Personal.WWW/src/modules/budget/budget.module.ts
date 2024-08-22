@@ -5,6 +5,8 @@ import { WalletsPage } from "./pages/wallets/wallets.component";
 import { CategoriesPage } from "./pages/categories/categories.component";
 import { AppDashboardService } from "@core/services/app-dashboard.service";
 import { IncomePieChartTile } from "./components/income-pie-chart-tile/income-pie-chart-tile.component";
+import { OutcomePieChartTile } from "./components/outcome-pie-chart-tile/outcome-pie-chart-tile.component";
+import { OutcomeBarChartTile } from "./components/outcome-bar-chart-tile/outcome-bar-chart-tile.component";
 
 const modulePrefix = 'budget';
 
@@ -26,7 +28,7 @@ export default {
     },
     init: (dashboardService: AppDashboardService) => {
         dashboardService.register({
-            component: IncomePieChartTile,
+            component: OutcomePieChartTile,
             icon: 'pi pi-chart-pie',
             strongName: 'outcome-distribution-tile',
             title: 'budget.outcomeDistribution'
@@ -36,6 +38,12 @@ export default {
             icon: 'pi pi-chart-pie',
             strongName: 'income-distribution-tile',
             title: 'budget.incomeDistribution'
+        })
+        dashboardService.register({
+            component: OutcomeBarChartTile,
+            icon: 'pi pi-chart-bar',
+            strongName: 'outcome-bar-chart-tile',
+            title: 'budget.outcomeBarChart'
         })
     }
 }

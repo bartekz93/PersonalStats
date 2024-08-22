@@ -14,7 +14,8 @@ import { ListboxModule } from 'primeng/listbox';
             [ngModel]="selected" 
             (ngModelChange)="selectedChange.emit($event)"
             optionLabel="label"
-            [listStyle]="{'min-height': '100%'}"
+            [style]="{'min-height': '100%'}"
+            [listStyle]="{'max-height': '100%'}"
         >
             @if (hasTemplate('item')) {
                 <ng-template let-item pTemplate="item">

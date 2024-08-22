@@ -12,6 +12,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import dietModule from 'modules/diet/diet.module';
 import { AppDashboardService } from '@core/services/app-dashboard.service';
 import budgetModule from '@budget/budget.module';
+import timeModule from 'modules/time/time.module';
 
 @Component({
   selector: 'app-root',
@@ -30,6 +31,7 @@ export class AppComponent {
 
     dietModule.init(dashboardService);
     budgetModule.init(dashboardService);
+    timeModule.init(dashboardService);
   }
 
   isAuth() {
