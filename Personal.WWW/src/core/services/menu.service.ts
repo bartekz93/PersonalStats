@@ -12,7 +12,7 @@ export class MenuService {
     return [
         {
             id: 1,
-            name: 'Main',
+            name: 'Główne',
             url: 'main/dashboard',
             icon: 'pi pi-wallet',
             color: 'blue',
@@ -25,7 +25,7 @@ export class MenuService {
                 },
                 {
                     id: 6,
-                    name: 'Reports',
+                    name: 'Raporty',
                     url: 'main/reports',
                     icon: 'pi pi-gauge',
                 },
@@ -33,26 +33,26 @@ export class MenuService {
         },
         {
             id: 2,
-            name: 'Budget',
+            name: 'Budżet',
             url: '#',
             icon: 'pi pi-sun',
             color: 'blue',
             childs: [
                 {
                     id: 3,
-                    name: 'Wallets',
+                    name: 'Portfele',
                     url: 'budget/wallets',
                     icon: 'pi pi-wallet',
                 },
                 {
                     id: 4,
-                    name: 'Transactions',
+                    name: 'Transakcje',
                     url: 'budget/transactions',
                     icon: 'pi pi-money-bill',
                 },
                 {
                     id: 5,
-                    name: 'Categories',
+                    name: 'Kategorie',
                     url: 'budget/categories',
                     icon: 'pi pi-box',
                 },
@@ -60,20 +60,20 @@ export class MenuService {
         },
         {
             id: 7,
-            name: 'Diet',
+            name: 'Dieta',
             color: 'blue',
             url: '#',
             icon: 'pi pi-shopping-bag',
             childs: [
                 {
                     id: 8,
-                    name: 'Food',
+                    name: 'Jedzenie',
                     url: 'diet/food',
                     icon: 'pi pi-palette',
                 },
                 {
                     id: 9,
-                    name: 'Meals',
+                    name: 'Posiłki',
                     url: 'diet/meals',
                     icon: 'pi pi-filter',
                 },
@@ -81,14 +81,14 @@ export class MenuService {
         },
         {
             id: 11,
-            name: 'Habits',
+            name: 'Nawyki',
             color: 'blue',
             url: '#',
             icon: 'pi pi-flag',
             childs: [
                 {
                     id: 12,
-                    name: 'Mood',
+                    name: 'Nastrój',
                     url: 'habits/mood',
                     icon: 'pi pi-face-smile',
                 },
@@ -102,20 +102,20 @@ export class MenuService {
         },
         {
             id: 15,
-            name: 'Time',
+            name: 'Czas',
             color: 'blue',
             url: '#',
             icon: 'pi pi-clock',
             childs: [
                 {
                     id: 16,
-                    name: 'Activities',
+                    name: 'Aktywności',
                     url: 'time/activities',
                     icon: 'pi pi-objects-column',
                 },
                 {
                     id: 17,
-                    name: 'Log',
+                    name: 'Kalendarz',
                     url: 'time/calendar',
                     icon: 'pi pi-calendar',
                 },
@@ -123,14 +123,14 @@ export class MenuService {
         },
         {
             id: 19,
-            name: 'Other',
+            name: 'Inne',
             color: 'blue',
             url: '#',
             icon: 'pi pi-wrench',
             childs: [
                 {
                     id: 16,
-                    name: 'Settings',
+                    name: 'Ustawienia',
                     url: 'other/settings',
                     icon: 'pi pi-wrench',
                 }
