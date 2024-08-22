@@ -2,17 +2,23 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { AppButtonComponent } from '../app-button/app-button.component';
 import { AppDashboardBox } from './app-dashboard.component';
 import { CommonModule } from '@angular/common';
+import { AppDynamicComponent } from "../app-dynamic/app-dynamic.component";
+import { AppDashboardService, DashboardTileDesc } from '@core/services/app-dashboard.service';
+import { AppCardComponent } from '../app-card/app-card.component';
+import { AppDashboardTileComponent } from './app-dashboard-tile.component';
+import { AppDialogService } from '@core/services/app-dialog.service';
+import { AppDashboardTileBase } from './app-dashboard-tile.base';
 
 @Component({
     standalone: true,
-    imports: [AppButtonComponent, CommonModule],
+    imports: [AppButtonComponent, CommonModule, AppDynamicComponent, AppDashboardTileComponent],
     selector: 'app-dashboard-box',
     templateUrl: 'app-dashboard-box.component.html',
     styleUrl: 'app-dashboard-box.component.scss',
 })
 
 export class AppDashboardBoxComponent implements OnInit {
-    constructor() { }
+    constructor(private dashboardService: AppDashboardService, private dialogService: AppDialogService) { }
 
     @ViewChild('body') body?: ElementRef<HTMLInputElement>;
 
@@ -37,7 +43,23 @@ export class AppDashboardBoxComponent implements OnInit {
     }
 
     fill() {
-        this.box.type = 'F';
+        this.dialogService.open('app-dashboard-tile-browser', {}).then((tile: DashboardTileDesc) => {
+            this.box.type = 'F';
+            this.box.tile = tile.strongName;
+        })
+    }
+
+    clear() {
+        this.box.type = 'N';
+        this.box.tile = ''
+    }
+
+    getTileDesc() {
+        if (this.box.type == 'F' && this.box.tile) {
+            let tile = this.dashboardService.get(this.box.tile);
+            return tile;
+        }
+        return null;
     }
 
     grabBorder() {
@@ -86,6 +108,14 @@ export class AppDashboardBoxComponent implements OnInit {
         }
     }
 
+    getBoxStyle(index: number) {
+        let size = ((index == 1 ? this.box.size1 : this.box.size2) || 0)*100;
+        return {
+            width: this.box.type == 'H' ? `${size}%` : 'auto',
+            height: this.box.type == 'V' ? `${size}%` : 'auto',
+        }
+    }
+
     getBorderStyle() {
         let w = this.box.type == 'H' ? '10px' : 'auto';
         let h = this.box.type == 'V' ? '10px' : 'auto';
@@ -97,4 +127,8 @@ export class AppDashboardBoxComponent implements OnInit {
             cursor: this.box.type == 'H' ? 'ew-resize' : 'ns-resize'
         }
     }
+}
+
+function tile(value: unknown): unknown {
+    throw new Error('Function not implemented.');
 }

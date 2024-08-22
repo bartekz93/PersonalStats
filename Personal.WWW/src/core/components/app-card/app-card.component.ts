@@ -17,6 +17,7 @@ import { Component, OnInit } from '@angular/core';
         }
         .content {
             flex: 1;
+            overflow: hidden;
         }
 
         .actions {

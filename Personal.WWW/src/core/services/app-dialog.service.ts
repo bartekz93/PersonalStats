@@ -4,23 +4,42 @@ export interface AppDialogOpenOptions {
     isEdit: boolean;
 }
 
+export interface AppDialogOpenContext {
+    resolve: Function;
+    reject: Function;
+}
+
+export interface AppDialogOpenParam {
+    data: any;
+    options?: AppDialogOpenOptions;
+    ctx: AppDialogOpenContext;
+}
+
+type OpenDialogFunction = (param: AppDialogOpenParam) => void
+
 @Injectable({providedIn: 'root'})
 export class AppDialogService {
 
-    dialogs: { [code:string]: { visible: boolean; openFn: (data: any, options?: AppDialogOpenOptions) => void  } } = {};
+    dialogs: { [code:string]: { visible: boolean; openFn: OpenDialogFunction  } } = {};
 
-    register(code: string, openFn: (data: any, options?: AppDialogOpenOptions) => void) {
+    register(code: string, openFn: OpenDialogFunction) {
         this.dialogs[code] = {
             openFn: openFn,
             visible: false
         };
     }
     
-    open(code: string, data: any, options?: AppDialogOpenOptions) {
-        if (this.dialogs[code]) {
-            this.dialogs[code].visible = true;
-            this.dialogs[code].openFn(data, options);
-        }
+    open(code: string, data: any, options?: AppDialogOpenOptions): Promise<any> {
+        return new Promise((resolve, reject) => {
+            if (this.dialogs[code]) {
+                this.dialogs[code].visible = true;
+                this.dialogs[code].openFn({
+                    data: data, 
+                    options: options, 
+                    ctx: { resolve, reject }
+                });
+            }
+        })
     }
 
     isVisible(code: string) {

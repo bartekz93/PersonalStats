@@ -32,7 +32,7 @@ export class TransactionEditDialog extends EditDialogBase<TransactionEdit> {
     override getDefaultValues() {
         return {
             id: 0,
-            date: new Date().toISOString().substring(0, 10),
+            date: new Date().toJSON().substring(0, 10),
             walletId: null,
             categoryId: null,
             description: '',

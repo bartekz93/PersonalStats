@@ -1,0 +1,30 @@
+<div class="app-interval">
+    <div class="select">
+        <app-button [flat]="true" [round]="true" icon="pi pi-chevron-left" (onClick)="prev()"/>
+        <div (click)="open($event)" class="label">
+            @if (label()) {
+                {{ label() | translate }}
+            }
+            @else {
+                {{ dateFrom | date:'yyyy-MM-dd' }} - {{ dateTo | date:'yyyy-MM-dd' }}
+            }
+        </div>
+        <app-button [flat]="true" [round]="true" icon="pi pi-chevron-right" (onClick)="next()" />
+    </div>
+    <p-overlayPanel #op>
+        <div class="panel">
+            <div class="column">
+                <app-button label="app.thisWeek" [flat]="true" (onClick)="set('week', 0)"/>
+                <app-button label="app.prevWeek" [flat]="true" (onClick)="set('week', -1)"/>
+            </div>
+            <div class="column">
+                <app-button label="app.thisMonth" [flat]="true" (onClick)="set('month', 0)"/>
+                <app-button label="app.prevMonth" [flat]="true" (onClick)="set('month', -1)"/>
+            </div>
+            <div class="column">
+                <app-button label="app.thisYear" [flat]="true" (onClick)="set('year', 0)"/>
+                <app-button label="app.prevYear" [flat]="true" (onClick)="set('year', -1)"/>
+            </div>
+        </div>
+    </p-overlayPanel>
+</div>

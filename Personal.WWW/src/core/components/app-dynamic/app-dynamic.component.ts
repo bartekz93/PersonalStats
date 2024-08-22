@@ -22,17 +22,23 @@ export class AppDynamicComponent implements OnInit {
 
     ref: any
 
+    viewInit = false;
+
     ngOnInit() { }
 
-    ngOnChanges() {
-        if (this.ref) {
-            if (this.value) {
-                this.ref.instance.value = this.value;
-            }
-        }
+    ngOnChanges(e: any) {
+        console.log('change', e)
+        this.createComponent();
     }
 
     ngAfterViewInit() {
+        this.viewInit = true;
+        this.createComponent();
+    }
+
+    createComponent() {
+        if (!this.viewInit) return;
+        this.body.clear();
         this.ref = this.body.createComponent(this.component) as any;
         if (this.value) {
             this.ref.instance.value = this.value;

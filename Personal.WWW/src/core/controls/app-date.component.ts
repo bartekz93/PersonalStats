@@ -37,6 +37,6 @@ export class AppDate extends AppBaseControl {
     }
 
     format(date: Date) {
-        return date.toISOString().substring(0, 10);
+        return date.toJSON().substring(0, 10);
     }
 }

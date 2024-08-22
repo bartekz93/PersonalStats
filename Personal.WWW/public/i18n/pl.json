@@ -4,6 +4,16 @@
     "app.days": "Niedziela|Poniedziałek|Wtorek|Środa|Czwartek|Piątek|Sobota",
     "app.daysShort": "Ndz|Pon|Wt|Śr|Czw|Pt|Sb",
 
+    "app.thisWeek": "Ten tydzień",
+    "app.prevWeek": "Poprzedni tydzień",
+    "app.nextWeek": "Następny tydzień",
+    "app.thisMonth": "Ten miesiąc",
+    "app.prevMonth": "Poprzedni miesiąc",
+    "app.nextMonth": "Następny miesiąc",
+    "app.thisYear": "Ten rok",
+    "app.prevYear": "Poprzedni rok",
+    "app.nextYear": "Następny rok",
+
     "app.error": "Błąd",
     "app.currency": "Waluta",
     "app.success": "Sukces",
@@ -17,6 +27,7 @@
     "app.edit": "Edytuj",
     "app.yes": "Tak",
     "app.no": "Nie",
+    "app.ok": "Ok",
     "app.delete": "Usuń",
     "app.cancel": "Anuluj",
     "app.errors.unknownError": "Wystąpił niespodziewany błąd",
@@ -24,6 +35,7 @@
     "app.core.selectIcon": "Wybierz ikonę",
 
     "main.dashboard": "Dashboard",
+    "main.selectDashboardTile": "Wybierz kafelek",
 
 
     "budget.income": "Przychód",
@@ -64,7 +76,8 @@
     "budget.msg.transactionEditSuccess": "Pomyślnie edytowano transakcję",
     "budget.msg.transactionDeleteConfirmation": "Czy na pewno chcesz usunąć tę transakcję na {amount} {currency}?",
     "budget.msg.transactionDeleteSuccess": "Pomyślnie usunięto transakcję",
-
+    "budget.outcomeDistribution": "Rozkład wydatków",
+    "budget.incomeDistribution": "Rozkład przychodów",
 
 
     "user.login": "Login",
@@ -103,5 +116,6 @@
     "time.msg.entryCreateSuccess": "Pomyślnie utworzono wpis",
 
     "diet.food": "Produkty",
-    "diet.meals": "Posiłki"
+    "diet.meals": "Posiłki",
+    "diet.mealsDistribution": "Rozkład posiłków"
 }

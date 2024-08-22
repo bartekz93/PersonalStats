@@ -1,0 +1,26 @@
+<app-dialog 
+    code="app-dashboard-tile-browser" 
+    header="main.selectDashboardTile" 
+    (open)="onOpen($event)"
+>
+    <div class="container">
+        <div class="content">
+            <app-listbox [items]="tiles" [(selected)]="selected">
+                <ng-template appTemplate="item" let-item="item">
+                    <app-circle-label color="blue" [icon]="item.icon" [label]="item.title | translate" />
+                </ng-template>
+            </app-listbox>
+            <div class="preview">
+                @if (selected) {
+                    <app-dashboard-tile [tile]="selected" [edit]="false">
+                        <app-dynamic [component]="selected.component" [style]="{ width: '100%', height: '100%' }" [value]=""/>
+                    </app-dashboard-tile>
+                }
+            </div>
+        </div>
+        <div class="actions">
+            <app-button label="app.ok" (onClick)="select()"/>
+            <app-button label="app.cancel" [flat]="true" (onClick)="close()"/>
+        </div>
+    </div>
+</app-dialog>

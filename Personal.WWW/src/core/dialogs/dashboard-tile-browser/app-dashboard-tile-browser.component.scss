@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    gap: 10px;
+
+    .content {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        gap: 10px;
+    }
+
+    .preview {
+        width: 400px;
+        height: 400px;
+    }
+
+    .actions {
+        padding: 10px;
+        display: flex;
+        flex-direction: row-reverse;
+        gap: 10px;
+    }
+}

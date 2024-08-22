@@ -1,0 +1,21 @@
+.app-interval {
+    .select {
+        display: flex; 
+        flex-direction: row;
+        align-items: center;
+
+        .label {
+            cursor: pointer;
+        }
+    }
+}
+
+.panel {
+    display: flex;
+    flex-direction: row;
+
+    .column {
+        display: flex; 
+        flex-direction: column;
+    }
+}

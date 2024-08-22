@@ -4,7 +4,7 @@
             @if (withBack) {
                 <p-button (click)="back()" icon="pi pi-angle-left" [rounded]="true" [text]="true" />
             }
-            {{header | translate}}
+            <div class="title">{{header | translate}}</div>
             <ng-content select="[left]"></ng-content>
         </div>
         

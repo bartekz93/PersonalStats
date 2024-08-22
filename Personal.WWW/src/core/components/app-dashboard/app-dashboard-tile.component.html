@@ -1,0 +1,16 @@
+<app-card [style]="{ width: '100%', height: '100%', padding: '10px'}">
+    <ng-container header>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <i [class]="tile?.icon"></i>
+            <div class="title">
+                {{tile?.title || '' | translate}}
+            </div>
+            <div [style]="{ visibility: edit ? 'visible' : 'hidden'}">
+                <app-button [round]="true" [flat]="true" icon="pi pi-times" (onClick)="onRemove.emit()"/>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container content>
+        <ng-content></ng-content>
+    </ng-container>
+</app-card>

@@ -5,7 +5,7 @@
 }
 @if ((box.type == 'H' || box.type == 'V') && box.box1 && box.box2) {
     <div [style]="getStyle()" (mouseup)="onMouseUp()" (mousemove)="onMouseMove($event)" #body>
-        <div [style]="{flex: box.size1}">
+        <div [style]="getBoxStyle(1)">
             <app-dashboard-box [box]="box.box1" [edit]="edit" />
         </div>
         @if (edit) {
@@ -15,15 +15,16 @@
                 }
             </div>
         }
-        <div [style]="{flex: box.size2}">
+        <div [style]="getBoxStyle(2)">
             <app-dashboard-box [box]="box.box2" [edit]="edit" />
         </div>
     </div>
 }
 @if (box.type == 'F') {
-    <div class="tile-container">
-        <div class="tile">
-            asd
-        </div>
-    </div>
+    @let tile = getTileDesc();
+    @if (tile) {
+        <app-dashboard-tile [tile]="tile" [edit]="edit" (onRemove)="clear()">
+            <app-dynamic [component]="tile.component" [style]="{ width: '100%', height: '100%' }" [value]=""/>
+        </app-dashboard-tile>
+    }
 }

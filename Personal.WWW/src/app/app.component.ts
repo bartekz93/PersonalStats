@@ -9,6 +9,9 @@ import { ButtonModule } from 'primeng/button';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { UserAvatarComponent } from '../modules/user/components/user-avatar/user-avatar.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import dietModule from 'modules/diet/diet.module';
+import { AppDashboardService } from '@core/services/app-dashboard.service';
+import budgetModule from '@budget/budget.module';
 
 @Component({
   selector: 'app-root',
@@ -20,10 +23,13 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 export class AppComponent {
   title = 'PersonalStats';
 
-  constructor(private userService: UserService, private langService: LangService, private themeService: ThemeService) {
+  constructor(private userService: UserService, private langService: LangService, private themeService: ThemeService, private dashboardService: AppDashboardService) {
     langService.loadLang();
     themeService.loadTheme();
     userService.loadAuthenticatedUser();
+
+    dietModule.init(dashboardService);
+    budgetModule.init(dashboardService);
   }
 
   isAuth() {

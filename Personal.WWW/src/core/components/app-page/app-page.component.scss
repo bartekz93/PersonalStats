@@ -8,11 +8,14 @@
 .toolbar {
     background-color: #89aaf93b;
     height: 64px;
-    font-size: 24px;
     padding-left: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.title {
+    font-size: 24px;
 }
 
 .head {
