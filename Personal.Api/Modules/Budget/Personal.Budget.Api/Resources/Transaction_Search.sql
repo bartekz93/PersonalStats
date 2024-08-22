@@ -38,7 +38,7 @@ WHERE
 	T.IsActive = 1
 	AND T.[User_Id] = @User_Id
 	AND (@AmountMin IS NULL OR T.[Amount] >= @AmountMin)
-	AND (@AmountMax IS NULL OR T.[Amount] <= @AmountMin)
+	AND (@AmountMax IS NULL OR T.[Amount] <= @AmountMax)
 	AND (@DateFrom IS NULL OR T.[Date] >= @DateFrom)
 	AND (@DateTo IS NULL OR T.[Date] <= @DateTo)
 	AND (@Note IS NULL OR T.[Note] LIKE @NotePat)
